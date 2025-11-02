@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BUDHA.Om - Colección Energizada</title>
+  <link href="./dist/output.css" rel="stylesheet">
+  <style>
+    html { scrollbar-width: none; }
+    body { -ms-overflow-style: none; }
+    body::-webkit-scrollbar { display: none; width: 0; height: 0; }
+    .hero-title { font-size: 4rem; line-height: 1.1; }
+    @media (min-width: 768px) { .hero-title { font-size: 4.5rem !important; } }
+    @media (min-width: 1024px) { .hero-title { font-size: 6rem !important; } }
+  </style>
+</head>
+
+<body class="bg-[#101010]">
+
+  <div class="fixed inset-0 -z-10 pointer-events-none" aria-hidden="true">
+    <div class="absolute inset-0 bg-[#0b0b0b]"></div>
+    <div class="absolute inset-y-0 right-0 w-[40vw] bg-gradient-to-l from-cyan-500/10 via-cyan-400/5 to-transparent">
+    </div>
+  </div>
+
+  <nav id="main-navbar" class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 py-6 md:px-8 lg:px-16 bg-transparent transition-colors duration-300" style="position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; width: 100% !important; z-index: 9999 !important;">
+      <a href="./index.html">
+        <img src="./public/img/budha-logo2.png" alt="Logo BUDHA.Om" class="h-16 md:h-18 w-auto drop-shadow-[0_0_8px_rgba(0,0,0,0.35)]" />
+      </a>
+      <div class="hidden items-center gap-8 md:flex">
+        <a href="/tienda"
+          class="text-white transition-colors hover:opacity-80 font-inter drop-shadow-[0_0_4px_rgba(0,0,0,0.3)]">
+          Tienda
+        </a>
+        <a href="/tecnologia"
+          class="text-white transition-colors hover:opacity-80 font-inter drop-shadow-[0_0_4px_rgba(0,0,0,0.3)]">
+          Tecnología Cuántica
+        </a>
+        <a href="/filosofia"
+          class="text-white transition-colors hover:opacity-80 font-inter drop-shadow-[0_0_4px_rgba(0,0,0,0.3)]">
+          Nuestra Filosofía
+        </a>
+        <a href="/contacto"
+          class="text-white transition-colors hover:opacity-80 font-inter drop-shadow-[0_0_4px_rgba(0,0,0,0.3)]">
+          Contacto
+        </a>
+      </div>
+      <div class="flex items-center gap-4">
+        <button id="mobile-menu-btn" type="button"
+          class="md:hidden text-white transition-colors hover:opacity-80 drop-shadow-[0_0_4px_rgba(0,0,0,0.35)] relative z-50"
+          style="cursor: pointer;">
+          <svg class="h-6 w-6 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+            aria-hidden="true">
+            <path d="M3 12h18M3 6h18M3 18h18" />
+          </svg>
+        </button>
+        <button class="text-white transition-colors hover:opacity-80 drop-shadow-[0_0_4px_rgba(0,0,0,0.35)]"
+          style="cursor: pointer;">
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+            aria-hidden="true">
+            <circle cx="9" cy="21" r="1" />
+            <circle cx="20" cy="21" r="1" />
+            <path d="M1 1h2l.34 2M6 6h13l-1.7 8.39a2 2 0 0 1-2 1.61H7.27a2 2 0 0 1-2-1.61L5 7H21" />
+          </svg>
+        </button>
+      </div>
+  </nav>
+
+  <div id="mobile-menu"
+    class="hidden md:hidden fixed top-0 left-0 right-0 bg-[#101010] border-t border-gray-800 z-40 pt-20">
+    <div class="flex flex-col px-4 py-4 gap-4">
+      <div class="flex items-center justify-between mb-2">
+        <span class="text-white font-inter font-semibold">Menú</span>
+        <button id="close-mobile-menu" class="text-white transition-colors hover:opacity-80" style="cursor: pointer;">
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+            aria-label="Cerrar menú">
+            <path d="M18 6L6 18M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      <a href="/tienda" class="text-white transition-colors hover:opacity-80 font-inter py-2">Tienda</a>
+      <a href="/tecnologia" class="text-white transition-colors hover:opacity-80 font-inter py-2">Tecnología
+        Cuántica</a>
+      <a href="/filosofia" class="text-white transition-colors hover:opacity-80 font-inter py-2">Nuestra
+        Filosofía</a>
+      <a href="/contacto" class="text-white transition-colors hover:opacity-80 font-inter py-2">Contacto</a>
+    </div>
+  </div>
+
+  <main class="bg-[#101010] text-white">
+    <section class="relative w-full h-screen overflow-hidden">
+      <div class="absolute inset-0 bg-[#101010]">
+        <img src="./public/img/img-colecion-energizada.png" alt="Colección Energizada" 
+          class="w-full h-full object-cover object-center" />
+      </div>
+
+      <div class="absolute inset-0 flex flex-col items-center justify-center z-10 px-4">
+        <h1 class="hero-title font-bold text-black mb-4 text-center" style="font-family: Poppins, sans-serif;">
+          Colección Energizada
+        </h1>
+        <p class="text-xl md:text-2xl text-[#010101] text-center max-w-2xl" style="font-family: Inter, sans-serif;">
+          Descubre nuestra nueva coleccion, tiene un diseño minimalista. Combina tecnología avanzada para energizar tu
+          estilo.
+        </p>
+      </div>
+    </section>
+
+    <section class="py-16 px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-6 max-w-7xl mx-auto">
+
+        <a href="./producto-detalle.html" class="bg-[#141414] rounded-lg overflow-hidden transition-all hover:ring-2 hover:ring-[#00FFFF] cursor-pointer flex flex-col">
+          <div class="aspect-square relative w-full overflow-hidden bg-[#1a1a1a]">
+            <img src="./public/img/reme2.png" alt="Quantum Hoodie" class="w-full h-full object-cover" />
+          </div>
+          <div class="p-4 lg:p-6">
+            <h3 class="font-bold text-white mb-2 text-lg sm:text-xl lg:text-xl" style="font-family: Poppins, sans-serif;">Quantum Hoodie</h3>
+            <p class="text-gray-400 text-base sm:text-lg lg:text-base" style="font-family: Inter, sans-serif;">$150</p>
+          </div>
+        </a>
+
+        <a href="./producto-detalle.html" class="bg-[#141414] rounded-lg overflow-hidden transition-all hover:ring-2 hover:ring-[#00FFFF] cursor-pointer flex flex-col">
+          <div class="aspect-square relative w-full overflow-hidden bg-[#1a1a1a]">
+            <img src="./public/img/reme-tatei.jpg" alt="Zenith Tee" class="w-full h-full object-cover" />
+          </div>
+          <div class="p-4 lg:p-6">
+            <h3 class="font-bold text-white mb-2 text-lg sm:text-xl lg:text-xl" style="font-family: Poppins, sans-serif;">Zenith Tee</h3>
+            <p class="text-gray-400 text-base sm:text-lg lg:text-base" style="font-family: Inter, sans-serif;">$80</p>
+          </div>
+        </a>
+
+        <a href="./producto-detalle.html" class="bg-[#141414] rounded-lg overflow-hidden transition-all hover:ring-2 hover:ring-[#00FFFF] cursor-pointer flex flex-col">
+          <div class="aspect-square relative w-full overflow-hidden bg-[#1a1a1a]">
+            <img src="./public/img/reme2.png" alt="Momentum Trousers" class="w-full h-full object-cover" />
+          </div>
+          <div class="p-4 lg:p-6">
+            <h3 class="font-bold text-white mb-2 text-lg sm:text-xl lg:text-xl" style="font-family: Poppins, sans-serif;">Momentum Trousers</h3>
+            <p class="text-gray-400 text-base sm:text-lg lg:text-base" style="font-family: Inter, sans-serif;">$220</p>
+          </div>
+        </a>
+
+        <a href="./producto-detalle.html" class="bg-[#141414] rounded-lg overflow-hidden transition-all hover:ring-2 hover:ring-[#00FFFF] cursor-pointer flex flex-col">
+          <div class="aspect-square relative w-full overflow-hidden bg-[#1a1a1a]">
+            <img src="./public/img/reme-tatei.jpg" alt="Vortex Jacket" class="w-full h-full object-cover" />
+          </div>
+          <div class="p-4 lg:p-6">
+            <h3 class="font-bold text-white mb-2 text-lg sm:text-xl lg:text-xl" style="font-family: Poppins, sans-serif;">Vortex Jacket</h3>
+            <p class="text-gray-400 text-base sm:text-lg lg:text-base" style="font-family: Inter, sans-serif;">$350</p>
+          </div>
+        </a>
+
+        <a href="./producto-detalle.html" class="bg-[#141414] rounded-lg overflow-hidden transition-all hover:ring-2 hover:ring-[#00FFFF] cursor-pointer flex flex-col">
+          <div class="aspect-square relative w-full overflow-hidden bg-[#1a1a1a]">
+            <img src="./public/img/reme2.png" alt="Zenith Tee - Ash" class="w-full h-full object-cover" />
+          </div>
+          <div class="p-4 lg:p-6">
+            <h3 class="font-bold text-white mb-2 text-lg sm:text-xl lg:text-xl" style="font-family: Poppins, sans-serif;">Zenith Tee - Ash</h3>
+            <p class="text-gray-400 text-base sm:text-lg lg:text-base" style="font-family: Inter, sans-serif;">$80</p>
+          </div>
+        </a>
+
+        <a href="./producto-detalle.html" class="bg-[#141414] rounded-lg overflow-hidden transition-all hover:ring-2 hover:ring-[#00FFFF] cursor-pointer flex flex-col">
+          <div class="aspect-square relative w-full overflow-hidden bg-[#1a1a1a]">
+            <img src="./public/img/reme-tatei.jpg" alt="Momentum Trousers - Navy" class="w-full h-full object-cover" />
+          </div>
+          <div class="p-4 lg:p-6">
+            <h3 class="font-bold text-white mb-2 text-lg sm:text-xl lg:text-xl" style="font-family: Poppins, sans-serif;">Momentum Trousers - Navy</h3>
+            <p class="text-gray-400 text-base sm:text-lg lg:text-base" style="font-family: Inter, sans-serif;">$220</p>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="bg-[#101010] text-white">
+      <div class="px-6 py-16 md:py-20">
+        <div class="mx-auto max-w-2xl text-center">
+          <h2 class="mb-4 font-[family-name:var(--font-poppins)] text-4xl font-bold leading-tight md:text-5xl">
+            Mantenete en Frecuencia
+          </h2>
+          <p class="mb-8 font-[family-name:var(--font-inter)] text-base leading-relaxed text-gray-300 md:text-lg">
+            Suscribite a nuestro newsletter y recibí contenido exclusivo, lanzamientos y novedades.
+          </p>
+          <form class="mx-auto flex max-w-md flex-col gap-3 sm:flex-row">
+            <input type="email" placeholder="Your Email"
+              class="flex-1 rounded-lg border border-gray-700 bg-[#1a1a1a] px-4 py-3 font-[family-name:var(--font-inter)] text-white placeholder:text-gray-500 focus:outline-none focus:border-[#00FFFF]" />
+            <button type="submit"
+              class="rounded-lg bg-[#00FFFF] px-8 py-3 font-[family-name:var(--font-inter)] font-medium text-[#101010] hover:bg-[#00FFFF]/90">
+              Subscribe
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-700"></div>
+
+      <div class="px-4 md:px-6 py-8 md:py-12">
+        <div class="mx-auto grid max-w-6xl gap-8 grid-cols-2 md:grid-cols-4">
+          <div class="col-span-2 md:col-span-1 text-center md:text-left">
+            <h3 class="mb-4 font-[family-name:var(--font-poppins)] text-2xl font-bold">BUDHA.Om</h3>
+            <p class="font-[family-name:var(--font-inter)] text-sm leading-relaxed text-gray-400">
+              © 2025 BUDHA.Om. Todos los derechos reservados.
+            </p>
+          </div>
+
+          <div class="text-center md:text-left">
+            <h4 class="mb-4 font-[family-name:var(--font-inter)] text-base font-semibold">Navegación</h4>
+            <ul class="space-y-3">
+              <li>
+                <a href="#"
+                  class="font-[family-name:var(--font-inter)] text-sm text-gray-300 transition-colors hover:text-white">
+                  Tienda
+                </a>
+              </li>
+              <li>
+                <a href="#"
+                  class="font-[family-name:var(--font-inter)] text-sm text-gray-300 transition-colors hover:text-white">
+                  Tecnología Cuántica
+                </a>
+              </li>
+              <li>
+                <a href="#"
+                  class="font-[family-name:var(--font-inter)] text-sm text-gray-300 transition-colors hover:text-white">
+                  Nuestra Filosofía
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="text-center md:text-left">
+            <h4 class="mb-4 font-[family-name:var(--font-inter)] text-base font-semibold">Ayuda</h4>
+            <ul class="space-y-3">
+              <li>
+                <a href="#"
+                  class="font-[family-name:var(--font-inter)] text-sm text-gray-300 transition-colors hover:text-white">
+                  Preguntas Frecuentes
+                </a>
+              </li>
+              <li>
+                <a href="#"
+                  class="font-[family-name:var(--font-inter)] text-sm text-gray-300 transition-colors hover:text-white">
+                  Contacto
+                </a>
+              </li>
+              <li>
+                <a href="#"
+                  class="font-[family-name:var(--font-inter)] text-sm text-gray-300 transition-colors hover:text-white">
+                  Términos y Condiciones
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-span-2 md:col-span-1 text-center md:text-left">
+            <h4 class="mb-4 font-[family-name:var(--font-inter)] text-base font-semibold">Seguinos</h4>
+            <div class="flex gap-4 justify-center md:justify-start">
+              <a href="#" class="text-gray-300 transition-colors hover:text-white" aria-label="Instagram">
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+              </a>
+              <a href="#" class="text-gray-300 transition-colors hover:text-white" aria-label="Facebook">
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                </svg>
+              </a>
+              <a href="#" class="text-gray-300 transition-colors hover:text-white" aria-label="Email">
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                  <path d="M22 7l-10 6L2 7"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    function initSimpleMobileMenu() {
+      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+      const closeMobileMenuBtn = document.getElementById('close-mobile-menu');
+      const mobileMenu = document.getElementById('mobile-menu');
+      if (!mobileMenuBtn || !mobileMenu || !closeMobileMenuBtn) {
+        console.warn('Elementos del menú móvil no encontrados');
+        return;
+      }
+      function toggleMenu(e) {
+        if (e) { e.stopPropagation(); }
+        mobileMenu.classList.toggle('hidden');
+      }
+      function closeMenu(e) {
+        if (e) { e.stopPropagation(); }
+        mobileMenu.classList.add('hidden');
+      }
+      mobileMenuBtn.addEventListener('click', toggleMenu);
+      closeMobileMenuBtn.addEventListener('click', closeMenu);
+      const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+      mobileMenuLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+        });
+      });
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initSimpleMobileMenu);
+    } else {
+      initSimpleMobileMenu();
+    }
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const navbar = document.getElementById('main-navbar');
+      if (navbar) {
+        const handleScroll = () => {
+          if (window.scrollY > 50) {
+            navbar.classList.remove('bg-transparent');
+            navbar.classList.add('bg-[#101010]');
+          } else {
+            navbar.classList.add('bg-transparent');
+            navbar.classList.remove('bg-[#101010]');
+          }
+        };
+        window.addEventListener('scroll', handleScroll);
+        // Ejecutar una vez al cargar por si la página carga con scroll
+        handleScroll(); 
+      }
+    });
+  </script>
+
+</body>
+</html>

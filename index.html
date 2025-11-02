@@ -51,10 +51,10 @@
       </div>
       <div class="relative z-20 h-full flex flex-col">
         <nav class="relative z-50 flex items-center justify-between px-4 py-6 md:px-8 lg:px-16">
-          <a href="/"
-            class="text-xl md:text-2xl font-bold text-white font-poppins drop-shadow-[0_0_8px_rgba(0,0,0,0.35)]">
-            BUDHA.Om
+          <a href="/">
+            <img src="./public/img/budha-logo2.png" alt="Logo BUDHA.Om" class="h-16 md:h-18 w-auto drop-shadow-[0_0_8px_rgba(0,0,0,0.35)]" />
           </a>
+          
 
           <div class="hidden items-center gap-8 md:flex">
             <a href="/tienda"
@@ -136,7 +136,7 @@
     
     <section class="w-full h-screen px-4 md:px-6 flex items-center" style="background-color: #101010;">
       <div class="mx-auto grid max-w-6xl grid-cols-1 gap-6 md:gap-10 md:grid-cols-2">
-        <a href="#energizada"
+        <a href="./coleccion-energizada.html"
           class="anim-child group rounded-3xl bg-[#141414] p-4 md:p-6 shadow-[0_10px_40px_rgba(0,0,0,0.25)] transition-all duration-500 hover:translate-y-[-4px] hover:shadow-[0_15px_50px_rgba(0,0,0,0.4)] opacity-0 -translate-x-8">
           <div class="overflow-hidden rounded-2xl">
             <img src="./public/img/reme2.png" alt="Colección Energizada" width="780" height="520"
@@ -151,7 +151,7 @@
           </div>
         </a>
 
-        <a href="#esencia"
+        <a href="./coleccion-esencia.html"
           class="anim-child group rounded-3xl bg-[#141414] p-4 md:p-6 shadow-[0_10px_40px_rgba(0,0,0,0.25)] transition-all duration-500 hover:translate-y-[-4px] hover:shadow-[0_15px_50px_rgba(0,0,0,0.4)] opacity-0 translate-x-8 delay-75">
           <div class="overflow-hidden rounded-2xl">
             <img src="./public/img/reme-tatei.jpg" alt="Colección Esencia" width="780" height="520"
@@ -653,6 +653,15 @@
           return; 
         }
         
+        // Excepción para enlaces que apuntan a otras páginas HTML
+        const link = target.closest('a');
+        if (link && link.href) {
+          const href = link.getAttribute('href');
+          if (href && !href.startsWith('#') && (href.endsWith('.html') || href.includes('.html'))) {
+            return; // Permitir que el enlace funcione normalmente
+          }
+        }
+        
         // Si no es una excepción, bloquea el evento
         e.preventDefault();
         e.stopPropagation();
@@ -896,6 +905,16 @@
         const closeMobileMenuBtn = document.getElementById('close-mobile-menu');
         const mobileMenu = document.getElementById('mobile-menu');
         
+        // Verificar si el touch es en un enlace que apunta a otra página HTML
+        const link = target.closest('a');
+        if (link && link.href) {
+          const href = link.getAttribute('href');
+          if (href && !href.startsWith('#') && (href.endsWith('.html') || href.includes('.html'))) {
+            touchY = null; // No iniciar scroll si es un enlace externo
+            return; // Permitir que el enlace funcione normalmente
+          }
+        }
+        
         if ((mobileMenuBtn && mobileMenuBtn.contains(target)) || 
             (closeMobileMenuBtn && closeMobileMenuBtn.contains(target)) ||
             (mobileMenu && mobileMenu.contains(target))) {
@@ -913,6 +932,22 @@
         if (dy < 0) goTo(currentIndex + 1); else goTo(currentIndex - 1);
         touchY = null;
       }, { passive: false });
+
+      // Permitir navegación normal en enlaces que apuntan a otras páginas HTML
+      document.addEventListener('click', (e) => {
+        const target = e.target.closest('a');
+        if (target && target.href) {
+          const href = target.getAttribute('href');
+          // Si el enlace apunta a una página HTML (no es un anchor #)
+          if (href && !href.startsWith('#') && (href.endsWith('.html') || href.includes('.html'))) {
+            // Detener cualquier scroll lock activo
+            setScrollLock(false);
+            isScrolling = false;
+            // Permitir la navegación normal - no hacer nada, dejar que el navegador maneje el click
+            return;
+          }
+        }
+      }, { capture: true, passive: true });
 
       // Trigger animations for the first section on initial load
       document.addEventListener('DOMContentLoaded', () => {
