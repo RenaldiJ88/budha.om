@@ -90,16 +90,18 @@
 
   <main class="bg-[#101010] text-white">
     <section class="relative w-full h-screen overflow-hidden">
-      <div class="absolute inset-0 bg-[#101010]">
-        <img src="./public/img/img-colecion-energizada.png" alt="Colección Energizada" 
-          class="w-full h-full object-cover object-center" />
-      </div>
+      <video class="object-cover w-full h-full" autoplay loop muted playsinline>
+        <source src="./public/video/video-energizada.mp4" type="video/mp4" />
+        Tu navegador no admite el video de fondo.
+      </video>
+      
+      <div class="absolute inset-0 bg-black/40 z-0"></div>
 
       <div class="absolute inset-0 flex flex-col items-center justify-center z-10 px-4">
-        <h1 class="hero-title font-bold text-black mb-4 text-center" style="font-family: Poppins, sans-serif;">
+        <h1 class="anim-child hero-title font-bold text-white mb-4 text-center drop-shadow-[0_0_10px_rgba(0,0,0,0.8)] opacity-0 translate-y-4" style="font-family: Poppins, sans-serif;">
           Colección Energizada
         </h1>
-        <p class="text-xl md:text-2xl text-[#010101] text-center max-w-2xl" style="font-family: Inter, sans-serif;">
+        <p class="anim-child text-xl md:text-2xl text-white text-center max-w-2xl drop-shadow-[0_0_6px_rgba(0,0,0,0.7)] opacity-0 translate-y-4 delay-50" style="font-family: Inter, sans-serif;">
           Descubre nuestra nueva coleccion, tiene un diseño minimalista. Combina tecnología avanzada para energizar tu
           estilo.
         </p>
@@ -107,11 +109,11 @@
     </section>
 
     <section class="py-16 px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-6 max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-6 max-w-7xl mx-auto">
 
-        <a href="./producto-detalle.html" class="bg-[#141414] rounded-lg overflow-hidden transition-all hover:ring-2 hover:ring-[#00FFFF] cursor-pointer flex flex-col">
+        <a href="./producto-detalle.html" class="anim-child group bg-[#141414] rounded-lg overflow-hidden transition-all hover:ring-2 hover:ring-[#00FFFF] cursor-pointer flex flex-col opacity-0 translate-y-4 delay-75">
           <div class="aspect-square relative w-full overflow-hidden bg-[#1a1a1a]">
-            <img src="./public/img/reme2.png" alt="Quantum Hoodie" class="w-full h-full object-cover" />
+            <img src="./public/img/reme2.png" alt="Quantum Hoodie" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
           </div>
           <div class="p-4 lg:p-6">
             <h3 class="font-bold text-white mb-2 text-lg sm:text-xl lg:text-xl" style="font-family: Poppins, sans-serif;">Quantum Hoodie</h3>
@@ -119,9 +121,9 @@
           </div>
         </a>
 
-        <a href="./producto-detalle.html" class="bg-[#141414] rounded-lg overflow-hidden transition-all hover:ring-2 hover:ring-[#00FFFF] cursor-pointer flex flex-col">
+        <a href="./producto-detalle.html" class="anim-child group bg-[#141414] rounded-lg overflow-hidden transition-all hover:ring-2 hover:ring-[#00FFFF] cursor-pointer flex flex-col opacity-0 translate-y-4 delay-100">
           <div class="aspect-square relative w-full overflow-hidden bg-[#1a1a1a]">
-            <img src="./public/img/reme-tatei.jpg" alt="Zenith Tee" class="w-full h-full object-cover" />
+            <img src="./public/img/reme-tatei.jpg" alt="Zenith Tee" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
           </div>
           <div class="p-4 lg:p-6">
             <h3 class="font-bold text-white mb-2 text-lg sm:text-xl lg:text-xl" style="font-family: Poppins, sans-serif;">Zenith Tee</h3>
@@ -129,9 +131,9 @@
           </div>
         </a>
 
-        <a href="./producto-detalle.html" class="bg-[#141414] rounded-lg overflow-hidden transition-all hover:ring-2 hover:ring-[#00FFFF] cursor-pointer flex flex-col">
+        <a href="./producto-detalle.html" class="anim-child group bg-[#141414] rounded-lg overflow-hidden transition-all hover:ring-2 hover:ring-[#00FFFF] cursor-pointer flex flex-col opacity-0 translate-y-4 delay-150">
           <div class="aspect-square relative w-full overflow-hidden bg-[#1a1a1a]">
-            <img src="./public/img/reme2.png" alt="Momentum Trousers" class="w-full h-full object-cover" />
+            <img src="./public/img/reme2.png" alt="Momentum Trousers" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
           </div>
           <div class="p-4 lg:p-6">
             <h3 class="font-bold text-white mb-2 text-lg sm:text-xl lg:text-xl" style="font-family: Poppins, sans-serif;">Momentum Trousers</h3>
@@ -139,9 +141,9 @@
           </div>
         </a>
 
-        <a href="./producto-detalle.html" class="bg-[#141414] rounded-lg overflow-hidden transition-all hover:ring-2 hover:ring-[#00FFFF] cursor-pointer flex flex-col">
+        <a href="./producto-detalle.html" class="anim-child group bg-[#141414] rounded-lg overflow-hidden transition-all hover:ring-2 hover:ring-[#00FFFF] cursor-pointer flex flex-col opacity-0 translate-y-4 delay-200">
           <div class="aspect-square relative w-full overflow-hidden bg-[#1a1a1a]">
-            <img src="./public/img/reme-tatei.jpg" alt="Vortex Jacket" class="w-full h-full object-cover" />
+            <img src="./public/img/reme-tatei.jpg" alt="Vortex Jacket" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
           </div>
           <div class="p-4 lg:p-6">
             <h3 class="font-bold text-white mb-2 text-lg sm:text-xl lg:text-xl" style="font-family: Poppins, sans-serif;">Vortex Jacket</h3>
@@ -149,9 +151,9 @@
           </div>
         </a>
 
-        <a href="./producto-detalle.html" class="bg-[#141414] rounded-lg overflow-hidden transition-all hover:ring-2 hover:ring-[#00FFFF] cursor-pointer flex flex-col">
+        <a href="./producto-detalle.html" class="anim-child group bg-[#141414] rounded-lg overflow-hidden transition-all hover:ring-2 hover:ring-[#00FFFF] cursor-pointer flex flex-col opacity-0 translate-y-4 delay-250">
           <div class="aspect-square relative w-full overflow-hidden bg-[#1a1a1a]">
-            <img src="./public/img/reme2.png" alt="Zenith Tee - Ash" class="w-full h-full object-cover" />
+            <img src="./public/img/reme2.png" alt="Zenith Tee - Ash" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
           </div>
           <div class="p-4 lg:p-6">
             <h3 class="font-bold text-white mb-2 text-lg sm:text-xl lg:text-xl" style="font-family: Poppins, sans-serif;">Zenith Tee - Ash</h3>
@@ -159,9 +161,9 @@
           </div>
         </a>
 
-        <a href="./producto-detalle.html" class="bg-[#141414] rounded-lg overflow-hidden transition-all hover:ring-2 hover:ring-[#00FFFF] cursor-pointer flex flex-col">
+        <a href="./producto-detalle.html" class="anim-child group bg-[#141414] rounded-lg overflow-hidden transition-all hover:ring-2 hover:ring-[#00FFFF] cursor-pointer flex flex-col opacity-0 translate-y-4 delay-300">
           <div class="aspect-square relative w-full overflow-hidden bg-[#1a1a1a]">
-            <img src="./public/img/reme-tatei.jpg" alt="Momentum Trousers - Navy" class="w-full h-full object-cover" />
+            <img src="./public/img/reme-tatei.jpg" alt="Momentum Trousers - Navy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
           </div>
           <div class="p-4 lg:p-6">
             <h3 class="font-bold text-white mb-2 text-lg sm:text-xl lg:text-xl" style="font-family: Poppins, sans-serif;">Momentum Trousers - Navy</h3>
@@ -330,6 +332,59 @@
         window.addEventListener('scroll', handleScroll);
         // Ejecutar una vez al cargar por si la página carga con scroll
         handleScroll(); 
+      }
+    });
+  </script>
+
+  <script>
+    // Sistema de animaciones suaves y minimalistas
+    document.addEventListener('DOMContentLoaded', () => {
+      function triggerAnimations(element) {
+        if (!element || element.dataset.animated === 'true') return;
+        
+        const animatedElements = element.querySelectorAll('.anim-child');
+        
+        animatedElements.forEach(el => {
+          if (!el.classList.contains('opacity-0')) return;
+          
+          const delayClass = Array.from(el.classList).find(c => c.startsWith('delay-'));
+          const delay = delayClass ? parseInt(delayClass.split('-')[1]) : 0;
+          
+          setTimeout(() => {
+            el.classList.add('transition-all', 'duration-700', 'ease-out');
+            el.classList.remove('opacity-0');
+            
+            if (el.classList.contains('translate-y-4')) {
+              el.classList.remove('translate-y-4');
+              el.classList.add('translate-y-0');
+            }
+            
+            el.classList.add('opacity-100');
+          }, delay);
+        });
+        
+        element.dataset.animated = 'true';
+      }
+      
+      // Animar elementos del hero inmediatamente
+      const heroSection = document.querySelector('section:first-of-type');
+      if (heroSection) {
+        setTimeout(() => triggerAnimations(heroSection), 100);
+      }
+      
+      // Animar productos cuando entran en viewport
+      const productsSection = document.querySelectorAll('section')[1];
+      if (productsSection) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              triggerAnimations(entry.target);
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1 });
+        
+        observer.observe(productsSection);
       }
     });
   </script>
