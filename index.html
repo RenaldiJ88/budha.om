@@ -10,137 +10,148 @@
     html,
     body {
       height: 100%;
-      overflow: hidden;
     }
-
     main {
-      height: 100vh;
-      overflow: hidden;
+      position: relative;
+      height: 100vh; 
     }
-
-    /* Ocultar scrollbar en todos los navegadores */
-    html {
-      scrollbar-width: none;
+    main > section {
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
     }
+    html { scrollbar-width: none; }
+    body { -ms-overflow-style: none; }
+    body::-webkit-scrollbar { display: none; }
 
-    body {
-      -ms-overflow-style: none;
+    /* CSS PARA EL EFECTO 3D (PARALLAX) */
+    .parallax-card {
+      perspective: 1000px;
     }
-
-    body::-webkit-scrollbar {
-      display: none;
-      width: 0;
-      height: 0;
+    .parallax-image {
+      transition: transform 0.2s ease-out;
+    }
+    
+    /* Clases de animación base que usa el JS */
+    .anim-child.opacity-0 {
+      opacity: 0;
+    }
+    .anim-child.translate-y-4 {
+      transform: translateY(1rem);
+    }
+    .anim-child.-translate-x-8 {
+      transform: translateX(-2rem);
+    }
+    .anim-child.translate-x-8 {
+      transform: translateX(2rem);
     }
   </style>
+  
+  <script src="https://unpkg.com/@barba/core"></script>
 </head>
 
-<body class="bg-[#101010] overflow-hidden">
+<body class="bg-[#101010]" data-barba="wrapper">
+  
   <div class="fixed inset-0 -z-10 pointer-events-none" aria-hidden="true">
     <div class="absolute inset-0 bg-[#0b0b0b]"></div>
     <div class="absolute inset-y-0 right-0 w-[40vw] bg-gradient-to-l from-cyan-500/10 via-cyan-400/5 to-transparent">
     </div>
   </div>
-  <main class="h-screen overflow-hidden">
-    <section class="relative h-screen w-full overflow-hidden bg-[#101010]">
+  
+  <nav id="main-navbar" class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 py-6 md:px-8 lg:px-16 bg-transparent transition-colors duration-300">
+    <a href="./index.html">
+      <img src="./public/img/budha-logo2.png" alt="Logo BUDHA.Om" class="h-16 md:h-18 w-auto drop-shadow-[0_0_8px_rgba(0,0,0,0.35)]" />
+    </a>
+    <div class="hidden items-center gap-8 md:flex">
+      <a href="./coleccion-energizada.html"
+        class="text-white transition-colors hover:opacity-80 font-inter drop-shadow-[0_0_4px_rgba(0,0,0,0.3)]">
+        Tienda
+      </a>
+      <a href="/tecnologia"
+        class="text-white transition-colors hover:opacity-80 font-inter drop-shadow-[0_0_4px_rgba(0,0,0,0.3)]">
+        Tecnología Cuántica
+      </a>
+      <a href="/filosofia"
+        class="text-white transition-colors hover:opacity-80 font-inter drop-shadow-[0_0_4px_rgba(0,0,0,0.3)]">
+        Nuestra Filosofía
+      </a>
+      <a href="/contacto"
+        class="text-white transition-colors hover:opacity-80 font-inter drop-shadow-[0_0_4px_rgba(0,0,0,0.3)]">
+        Contacto
+      </a>
+    </div>
+    <div class="flex items-center gap-4">
+      <button id="mobile-menu-btn" type="button"
+        class="md:hidden text-white transition-colors hover:opacity-80 drop-shadow-[0_0_4px_rgba(0,0,0,0.35)] relative z-50 cursor-pointer"
+        >
+        <svg class="h-6 w-6 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+          aria-hidden="true">
+          <path d="M3 12h18M3 6h18M3 18h18" />
+        </svg>
+      </button>
+      <button id="cart-toggle-btn" type="button"
+        class="text-white transition-colors hover:opacity-80 cursor-pointer drop-shadow-[0_0_4px_rgba(0,0,0,0.35)]"
+        aria-label="Abrir carrito">
+        <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+          aria-hidden="true">
+          <circle cx="9" cy="21" r="1" />
+          <circle cx="20" cy="21" r="1" />
+          <path d="M1 1h2l.34 2M6 6h13l-1.7 8.39a2 2 0 0 1-2 1.61H7.27a2 2 0 0 1-2-1.61L5 7H21" />
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <div id="mobile-menu"
+    class="hidden md:hidden fixed top-0 left-0 right-0 bg-[#101010] border-t border-gray-800 z-40 pt-20">
+    <div class="flex flex-col px-4 py-4 gap-4">
+      <div class="flex items-center justify-between mb-2">
+        <span class="text-white font-inter font-semibold">Menú</span>
+        <button id="close-mobile-menu" class="text-white transition-colors hover:opacity-80 cursor-pointer">
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+            aria-label="Cerrar menú">
+            <path d="M18 6L6 18M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      <a href="./coleccion-energizada.html" class="text-white transition-colors hover:opacity-80 font-inter py-2">Tienda</a>
+      <a href="/tecnologia" class="text-white transition-colors hover:opacity-80 font-inter py-2">Tecnología Cuántica</a>
+      <a href="/filosofia" class="text-white transition-colors hover:opacity-80 font-inter py-2">Nuestra Filosofía</a>
+      <a href="/contacto" class="text-white transition-colors hover:opacity-80 font-inter py-2">Contacto</a>
+    </div>
+  </div>
+
+  <main class="h-screen" data-barba="container" data-barba-namespace="home">
+    
+    <section class="relative h-screen w-full overflow-hidden bg-[#101010] flex flex-col">
       <div class="absolute inset-0 z-0 w-full h-full overflow-hidden">
         <video class="object-cover w-full h-full" autoplay loop muted playsinline>
           <source src="./public/video/video-home-f2.mp4" type="video/mp4" />
           Tu navegador no admite el video de fondo.
         </video>
       </div>
-      <div class="relative z-20 h-full flex flex-col">
-        <nav class="relative z-50 flex items-center justify-between px-4 py-6 md:px-8 lg:px-16">
-          <a href="/">
-            <img src="./public/img/budha-logo2.png" alt="Logo BUDHA.Om" class="h-16 md:h-18 w-auto drop-shadow-[0_0_8px_rgba(0,0,0,0.35)]" />
-          </a>
-          
-
-          <div class="hidden items-center gap-8 md:flex">
-            <a href="/tienda"
-              class="text-white transition-colors hover:opacity-80 font-inter drop-shadow-[0_0_4px_rgba(0,0,0,0.3)]">
-              Tienda
-            </a>
-            <a href="/tecnologia"
-              class="text-white transition-colors hover:opacity-80 font-inter drop-shadow-[0_0_4px_rgba(0,0,0,0.3)]">
-              Tecnología Cuántica
-            </a>
-            <a href="/filosofia"
-              class="text-white transition-colors hover:opacity-80 font-inter drop-shadow-[0_0_4px_rgba(0,0,0,0.3)]">
-              Nuestra Filosofía
-            </a>
-            <a href="/contacto"
-              class="text-white transition-colors hover:opacity-80 font-inter drop-shadow-[0_0_4px_rgba(0,0,0,0.3)]">
-              Contacto
-            </a>
-          </div>
-
-          <div class="flex items-center gap-4">
-            <button id="mobile-menu-btn" type="button"
-              class="md:hidden text-white transition-colors hover:opacity-80 drop-shadow-[0_0_4px_rgba(0,0,0,0.35)] relative z-50"
-              style="cursor: pointer;">
-              <svg class="h-6 w-6 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
-                aria-hidden="true">
-                <path d="M3 12h18M3 6h18M3 18h18" />
-              </svg>
-            </button>
-            <button class="text-white transition-colors hover:opacity-80 drop-shadow-[0_0_4px_rgba(0,0,0,0.35)]"
-              style="cursor: pointer;">
-              <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
-                aria-hidden="true">
-                <circle cx="9" cy="21" r="1" />
-                <circle cx="20" cy="21" r="1" />
-                <path d="M1 1h2l.34 2M6 6h13l-1.7 8.39a2 2 0 0 1-2 1.61H7.27a2 2 0 0 1-2-1.61L5 7H21" />
-              </svg>
-            </button>
-          </div>
-        </nav>
-
-        <div id="mobile-menu"
-          class="hidden md:hidden absolute top-0 left-0 right-0 bg-[#101010] border-t border-gray-800 z-40 pt-20">
-          <div class="flex flex-col px-4 py-4 gap-4">
-            <div class="flex items-center justify-between mb-2">
-              <span class="text-white font-inter font-semibold">Menú</span>
-              <button id="close-mobile-menu" class="text-white transition-colors hover:opacity-80" style="cursor: pointer;">
-                <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
-                  aria-label="Cerrar menú">
-                  <path d="M18 6L6 18M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
-            <a href="/tienda" class="text-white transition-colors hover:opacity-80 font-inter py-2">Tienda</a>
-            <a href="/tecnologia" class="text-white transition-colors hover:opacity-80 font-inter py-2">Tecnología
-              Cuántica</a>
-            <a href="/filosofia" class="text-white transition-colors hover:opacity-80 font-inter py-2">Nuestra
-              Filosofía</a>
-            <a href="/contacto" class="text-white transition-colors hover:opacity-80 font-inter py-2">Contacto</a>
-          </div>
-        </div>
-
-        <div class="flex flex-1 flex-col items-center justify-center px-4 text-center">
-          <h1
-            class="anim-child text-5xl font-bold text-white md:text-7xl lg:text-8xl font-poppins drop-shadow-[0_0_12px_rgba(255,255,255,0.35)] opacity-0 translate-y-4">
-            Vestí tu esencia.</h1>
-          <p
-            class="anim-child mt-6 text-sm tracking-[0.3em] text-white md:text-base font-inter drop-shadow-[0_0_6px_rgba(255,255,255,0.3)] opacity-0 translate-y-4 delay-50">
-            BUDHA.Om | NATURE & SPIRIT
-          </p>
-          <a href="/colecciones"
-            class="anim-child mt-10 px-8 py-4 text-sm font-medium text-white md:text-base font-inter border border-white/30 rounded-md hover:border-white/60 transition-colors drop-shadow-[0_0_6px_rgba(255,255,255,0.25)] opacity-0 translate-y-4 delay-100"
-            style="background: none;">
-            DESCUBRIR LAS COLECCIONES
-          </a>
-        </div>
+      <div class="relative z-20 flex flex-1 flex-col items-center justify-center px-4 text-center">
+        <h1
+          class="anim-child text-5xl font-bold text-white md:text-7xl lg:text-8xl font-poppins drop-shadow-[0_0_12px_rgba(255,255,255,0.35)] opacity-0 translate-y-4">
+          Vestí tu esencia.</h1>
+        <p
+          class="anim-child mt-6 text-sm tracking-[0.3em] text-white md:text-base font-inter drop-shadow-[0_0_6px_rgba(255,255,255,0.3)] opacity-0 translate-y-4 delay-50">
+          BUDHA.Om | NATURE & SPIRIT
+        </p>
+        <a href="#colecciones"
+          class="bg-transparent anim-child scroll-link mt-10 px-8 py-4 text-sm font-medium text-white md:text-base font-inter border border-white/30 rounded-md hover:border-white/60 transition-colors drop-shadow-[0_0_6px_rgba(255,255,255,0.25)] opacity-0 translate-y-4 delay-100">
+          DESCUBRIR LAS COLECCIONES
+        </a>
       </div>
     </section>
     
-    <section class="w-full h-screen px-4 md:px-6 flex items-center" style="background-color: #101010;">
+    <section id="colecciones" class="w-full h-screen px-4 md:px-6 flex items-center " >
       <div class="mx-auto grid max-w-6xl grid-cols-1 gap-6 md:gap-10 md:grid-cols-2">
         <a href="./coleccion-energizada.html"
-          class="anim-child group rounded-3xl bg-[#141414] p-4 md:p-6 shadow-[0_10px_40px_rgba(0,0,0,0.25)] transition-all duration-500 hover:translate-y-[-4px] hover:shadow-[0_15px_50px_rgba(0,0,0,0.4)] opacity-0 -translate-x-8">
+          class="parallax-card anim-child group rounded-3xl bg-[#141414] p-4 md:p-6 shadow-[0_10px_40px_rgba(0,0,0,0.25)] transition-all duration-500 hover:translate-y-[-4px] hover:shadow-[0_15px_50px_rgba(0,0,0,0.4)] opacity-0 -translate-x-8">
           <div class="overflow-hidden rounded-2xl">
             <img src="./public/img/reme2.png" alt="Colección Energizada" width="780" height="520"
-              class="h-72 w-full object-cover sm:h-80 md:h-96 transition-transform duration-700 group-hover:scale-105" />
+              class="parallax-image h-72 w-full object-cover sm:h-80 md:h-96 transition-transform duration-700 group-hover:scale-105" />
           </div>
           <div class="pt-8">
             <h2 class="mb-4 font-poppins text-3xl font-extrabold text-white md:text-4xl">Colección Energizada</h2>
@@ -150,12 +161,11 @@
             </p>
           </div>
         </a>
-
         <a href="./coleccion-esencia.html"
-          class="anim-child group rounded-3xl bg-[#141414] p-4 md:p-6 shadow-[0_10px_40px_rgba(0,0,0,0.25)] transition-all duration-500 hover:translate-y-[-4px] hover:shadow-[0_15px_50px_rgba(0,0,0,0.4)] opacity-0 translate-x-8 delay-75">
+          class="parallax-card anim-child group rounded-3xl bg-[#141414] p-4 md:p-6 shadow-[0_10px_40px_rgba(0,0,0,0.25)] transition-all duration-500 hover:translate-y-[-4px] hover:shadow-[0_15px_50px_rgba(0,0,0,0.4)] opacity-0 translate-x-8 delay-75">
           <div class="overflow-hidden rounded-2xl">
             <img src="./public/img/reme-tatei.jpg" alt="Colección Esencia" width="780" height="520"
-              class="h-72 w-full object-cover sm:h-80 md:h-96 transition-transform duration-700 group-hover:scale-105" />
+              class="parallax-image h-72 w-full object-cover sm:h-80 md:h-96 transition-transform duration-700 group-hover:scale-105" />
           </div>
           <div class="pt-8">
             <h2 class="mb-4 font-poppins text-3xl font-extrabold text-white md:text-4xl">Colección Esencia</h2>
@@ -166,30 +176,26 @@
         </a>
       </div>
     </section>
-    <section class="h-screen flex items-center justify-center px-4 md:px-8 lg:px-16" style="background-color: #101010;">
+    
+    <section class="h-screen flex items-center justify-center px-4 md:px-8 lg:px-16 bg-[#101010]" >
       <div class="max-w-7xl w-full grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
         <div class="space-y-6 text-center lg:text-left">
           <h1
             class="anim-child text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-tight
-              opacity-0 -translate-x-8
-              transition-all duration-700 ease-out"
+              opacity-0 -translate-x-8"
             style="font-family: Poppins, sans-serif;">
             Lo que llevás, te transforma.
           </h1>
-
           <p
             class="anim-child text-lg lg:text-xl text-gray-300 leading-relaxed 
-              opacity-0 -translate-x-8 delay-50
-              transition-all duration-700 ease-out"
+              opacity-0 -translate-x-8 delay-50"
             style="font-family: Inter, sans-serif;">
             Descubrí cómo la tecnología cuántica de nuestros Guardianes Cuánticos puede potenciar tu energía y
             bienestar.
           </p>
-
           <div class="flex justify-center lg:justify-start">
             <button type="button"
               class="anim-child text-base font-medium tracking-wide px-6 py-3 rounded 
-                transition-all duration-700 ease-out
                 opacity-0 -translate-x-8 delay-100
                 hover:scale-105 hover:shadow-lg"
               style="background-color: #00FFFF; color: #101010; font-family: Inter, sans-serif;">
@@ -197,9 +203,8 @@
             </button>
           </div>
         </div>
-
         <div
-          class="anim-child flex items-center justify-center opacity-0 translate-x-8 delay-75 transition-all duration-700 ease-out">
+          class="anim-child flex items-center justify-center opacity-0 translate-x-8 delay-75">
           <div class="relative w-full max-w-lg aspect-square">
             <img src="./public/img/transformacion.png" alt="Quantum Energy Torus Field"
               class="w-full h-full object-contain mix-blend-screen transition-transform duration-700 ease-out group-hover:scale-105" />
@@ -207,8 +212,9 @@
         </div>
       </div>
     </section>
-    <section class="h-screen flex items-center justify-center px-6" style="background-color: #101010;">
-      <div class="w-full max-w-5xl mx-auto flex flex-col items-center">
+    
+    <section class="h-screen flex items-center justify-center px-6 bg-[#101010]" >
+       <div class="w-full max-w-5xl mx-auto flex flex-col items-center">
         <div class="anim-child w-full flex items-center justify-center opacity-0 translate-y-4">
           <img src="./public/img/ben1.png" alt="Beneficio 1"
             class="max-h-[55vh] w-auto object-contain mix-blend-screen" />
@@ -222,39 +228,39 @@
           estabilidad física y fuerza, mejorando tu conexión con el suelo.</p>
       </div>
     </section>
+    
     <section class="h-screen bg-[#101010] flex items-center">
       <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-8 px-6 md:px-12">
         <div
-          class="anim-child flex items-center justify-center order-2 md:order-1 opacity-0 -translate-x-8 transition-all duration-700 ease-out delay-50">
+          class="anim-child flex items-center justify-center order-2 md:order-1 opacity-0 -translate-x-8 delay-50">
           <img src="./public/img/ben2.png" alt="Abstract glowing cyan infinity symbol representing rest cycles"
             class="w-full max-w-lg h-auto" />
         </div>
-
         <div class="flex flex-col justify-center gap-6 order-1 md:order-2 text-center md:text-left">
           <h2
-            class="anim-child font-poppins text-4xl md:text-6xl font-bold text-white leading-tight opacity-0 translate-y-4 transition-all duration-700 ease-out">
+            class="anim-child font-poppins text-4xl md:text-6xl font-bold text-white leading-tight opacity-0 translate-y-4">
             Beneficio 2: Optimiza tu Descanso
           </h2>
           <p
-            class="anim-child font-inter text-base md:text-xl text-gray-400 leading-relaxed opacity-0 translate-y-4 transition-all duration-700 ease-out delay-50">
+            class="anim-child font-inter text-base md:text-xl text-gray-400 leading-relaxed opacity-0 translate-y-4 delay-50">
             Ayuda a regular los ciclos de sueño para un descanso más profundo y reparador.
           </p>
         </div>
       </div>
     </section>
-
+    
     <section class="flex items-center justify-center h-screen bg-[#101010] px-6">
       <div class="flex flex-col items-center justify-center gap-8 text-center">
-        <div class="relative anim-child opacity-0 translate-y-4 transition-all duration-700 ease-out">
+        <div class="relative anim-child opacity-0 translate-y-4">
           <img src="./public/img/bene3.png" alt="Escudo Energético"
             class="h-auto w-full max-w-[600px]" />
         </div>
         <h1
-          class="anim-child font-poppins text-4xl font-bold text-white md:text-5xl lg:text-6xl opacity-0 translate-y-4 transition-all duration-700 ease-out delay-50">
+          class="anim-child font-poppins text-4xl font-bold text-white md:text-5xl lg:text-6xl opacity-0 translate-y-4 delay-50">
           Beneficio 3: Escudo Energético
         </h1>
         <p
-          class="anim-child font-inter max-w-2xl text-lg text-gray-400 md:text-xl opacity-0 translate-y-4 transition-all duration-700 ease-out delay-75">
+          class="anim-child font-inter max-w-2xl text-lg text-gray-400 md:text-xl opacity-0 translate-y-4 delay-75">
           Contribuye a mitigar el estrés electromagnético del entorno, fortaleciendo tu aura personal.
         </p>
       </div>
@@ -262,12 +268,11 @@
 
     <section class="flex h-screen flex-col items-center justify-center gap-8 bg-[#101010] px-4">
       <h2
-        class="anim-child font-bold text-4xl text-white md:text-5xl lg:text-6xl text-center font-[family-name:var(--font-poppins)] opacity-0 translate-y-4 transition-all duration-700 ease-out">
+        class=" mt-14 anim-child font-bold text-4xl text-white md:text-5xl lg:text-6xl text-center font-[family-name:var(--font-poppins)] opacity-0 translate-y-4">
         Mirá la Transformación en Acción
       </h2>
-
       <div
-        class="anim-child relative w-full max-w-5xl aspect-video bg-gradient-to-br from-teal-400 to-cyan-500 rounded-lg overflow-hidden shadow-2xl opacity-0 translate-y-4 transition-all duration-700 ease-out delay-50">
+        class="anim-child relative w-full max-w-5xl aspect-video bg-gradient-to-br from-teal-400 to-cyan-500 rounded-lg overflow-hidden shadow-2xl opacity-0 translate-y-4 delay-50">
         <button class="absolute inset-0 flex items-center justify-center group" aria-label="Play video">
           <div
             class="flex items-center justify-center w-24 h-24 rounded-full bg-black/40 backdrop-blur-sm transition-transform group-hover:scale-110">
@@ -277,39 +282,34 @@
           </div>
         </button>
       </div>
-
       <a href="#"
-        class="anim-child bg-[#00FFFF] text-[#101010] hover:bg-[#00FFFF]/90 font-[family-name:var(--font-inter)] text-base font-normal px-8 py-6 rounded-full inline-flex items-center justify-center opacity-0 translate-y-4 transition-all duration-700 ease-out delay-75"
-        style="text-decoration: none;">
+        class="anim-child bg-[#00FFFF] text-[#101010] no-underline hover:bg-[#00FFFF]/90 font-[family-name:var(--font-inter)] text-base font-normal px-8 py-6 rounded-full inline-flex items-center justify-center opacity-0 translate-y-4 delay-75">
         VER TODAS LAS PRUEBAS
       </a>
     </section>
 
-    <section class="relative flex h-screen w-full items-center justify-center overflow-hidden bg-[#101010]"
-      style="background: url('/public/img/mquc.png') center/cover no-repeat;">
+    <section class="relative flex h-screen w-full items-center justify-center overflow-hidden bg-[#101010] bg-[url('/public/img/mquc.png')] bg-center bg-cover bg-no-repeat">
       <div class="absolute inset-0 bg-black/20"></div>
-
       <div class="relative z-20 max-w-5xl px-6 text-center">
         <h1
-          class="anim-child mb-6 font-poppins text-5xl font-bold leading-tight text-white md:text-6xl lg:text-7xl opacity-0 translate-y-4 transition-all duration-700 ease-out">
+          class="anim-child mb-6 font-poppins text-5xl font-bold leading-tight text-white md:text-6xl lg:text-7xl opacity-0 translate-y-4">
           Más que ropa. Un camino.
         </h1>
         <p
-          class="anim-child font-inter text-lg leading-relaxed text-white md:text-xl lg:text-2xl opacity-0 translate-y-4 transition-all duration-700 ease-out delay-50">
+          class="anim-child font-inter text-lg leading-relaxed text-white md:text-xl lg:text-2xl opacity-0 translate-y-4 delay-50">
           Creemos que vestir es un acto de conciencia... un puente entre un diseño que te representa y una tecnología
           que te potencia.
         </p>
       </div>
     </section>
-
-    <section class="flex min-h-screen flex-col items-center justify-center bg-[#101010] px-4 py-8">
+    
+    <section class="flex min-h-screen flex-col items-center justify-center bg-[#101010] px-4 pt-20">
       <h2
-        class="anim-child mb-12 text-center font-poppins text-4xl font-bold text-white md:text-5xl lg:mb-16 lg:text-6xl opacity-0 translate-y-4 transition-all duration-700 ease-out">
+        class="anim-child mb-12 text-center font-poppins text-4xl font-bold text-white md:text-5xl lg:mb-16 lg:text-6xl opacity-0 translate-y-4">
         Encontrá el diseño que resuena con vos
       </h2>
-
       <div
-        class="anim-child relative mb-12 w-full max-w-6xl lg:mb-16 opacity-0 translate-y-4 transition-all duration-700 ease-out delay-50">
+        class="anim-child relative mb-12 w-full max-w-6xl lg:mb-16 opacity-0 translate-y-4 delay-50">
         <button id="carousel-prev"
           class="absolute left-0 top-1/2 z-10 -translate-x-4 -translate-y-1/2 text-white transition-opacity hover:opacity-70 md:-translate-x-8 lg:-translate-x-12"
           aria-label="Producto anterior" type="button">
@@ -342,10 +342,20 @@
                   Este diseño es nuestro manifiesto: la conexión entre la tierra y el espíritu, manifestada en una
                   prenda que vibra con la frecuencia del universo.
                 </p>
-                <a href="#"
-                  class="inline-flex items-center justify-center rounded-full bg-teal-400 px-8 py-4 font-inter text-lg font-semibold text-[#101010] shadow-lg transition-colors hover:bg-teal-300 focus:outline-none">
-                  VER DETALLE
-                </a>
+                <div class="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
+                  <a href="#"
+                    class="inline-flex items-center justify-center rounded-full bg-teal-400 px-8 py-4 font-inter text-lg font-semibold text-[#101010] shadow-lg transition-colors hover:bg-teal-300 focus:outline-none">
+                    VER DETALLE
+                  </a>
+                  <button type="button"
+                    class="buy-btn inline-flex items-center justify-center rounded-full border border-teal-400 px-8 py-4 font-inter text-lg font-semibold text-white shadow-lg transition-colors hover:bg-teal-400/10 focus:outline-none focus:ring-2 focus:ring-teal-400"
+                    data-product-id="remera-wairua-432"
+                    data-product-name="Remera Wairua 432"
+                    data-product-price="18500"
+                    data-product-image="./public/img/wairua.jpg">
+                    COMPRAR
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -354,104 +364,36 @@
             <div class="flex flex-col-reverse items-center gap-8 md:flex-row md:gap-16">
               <div
                 class="relative aspect-square w-72 max-w-[60vw] overflow-hidden rounded-3xl bg-gradient-to-br from-cyan-400/20 to-teal-600/20 shadow-xl sm:w-80 md:w-96">
-                <img src="https://dummyimage.com/440x440/17e6c4/0d0d0d&text=Remera+Zen+2" alt="Remera Zen"
-                  class="object-cover w-full h-full" />
+                <img src="./public/img/reme-tatei.jpg" alt="Remera Esencia" class="object-cover w-full h-full" />
               </div>
               <div class="flex max-w-xl flex-col items-center md:items-start">
                 <h3 class="mb-4 font-poppins text-3xl font-bold text-white md:text-4xl">
-                  Remera Zen 2
+                  Remera Esencia
                 </h3>
                 <p class="mb-8 text-lg text-gray-300 md:text-xl">
-                  Inspirada en los patrones armónicos de la naturaleza: la excelencia del diseño atemporal y energía
-                  vital en cada hilo.
+                  La pureza del diseño. Líneas limpias y confort absoluto para un estilo que trasciende el tiempo.
                 </p>
-                <a href="#"
-                  class="inline-flex items-center justify-center rounded-full bg-teal-400 px-8 py-4 font-inter text-lg font-semibold text-[#101010] shadow-lg transition-colors hover:bg-teal-300 focus:outline-none">
-                  VER DETALLE
-                </a>
-              </div>
-            </div>
-          </div>
-          <div
-            class="carousel-slide hidden flex w-full flex-col items-center justify-center transition-transform duration-500">
-            <div class="flex flex-col-reverse items-center gap-8 md:flex-row md:gap-16">
-              <div
-                class="relative aspect-square w-72 max-w-[60vw] overflow-hidden rounded-3xl bg-gradient-to-br from-cyan-400/20 to-teal-600/20 shadow-xl sm:w-80 md:w-96">
-                <img src="https://dummyimage.com/440x440/11acf2/fff&text=Remera+Equilibrio" alt="Remera Equilibrio"
-                  class="object-cover w-full h-full" />
-              </div>
-              <div class="flex max-w-xl flex-col items-center md:items-start">
-                <h3 class="mb-4 font-poppins text-3xl font-bold text-white md:text-4xl">
-                  Remera Equilibrio
-                </h3>
-                <p class="mb-8 text-lg text-gray-300 md:text-xl">
-                  Un puente entre lo clásico y lo innovador, con tecnología cuántica armonizadora incorporada en la
-                  prenda.
-                </p>
-                <a href="#"
-                  class="inline-flex items-center justify-center rounded-full bg-teal-400 px-8 py-4 font-inter text-lg font-semibold text-[#101010] shadow-lg transition-colors hover:bg-teal-300 focus:outline-none">
-                  VER DETALLE
-                </a>
-              </div>
-            </div>
-          </div>
-          <div
-            class="carousel-slide hidden flex w-full flex-col items-center justify-center transition-transform duration-500">
-            <div class="flex flex-col-reverse items-center gap-8 md:flex-row md:gap-16">
-              <div
-                class="relative aspect-square w-72 max-w-[60vw] overflow-hidden rounded-3xl bg-gradient-to-br from-cyan-400/20 to-teal-600/20 shadow-xl sm:w-80 md:w-96">
-                <img src="https://dummyimage.com/440x440/00FFFF/001010&text=Remera+Intención" alt="Remera Intención"
-                  class="object-cover w-full h-full" />
-              </div>
-              <div class="flex max-w-xl flex-col items-center md:items-start">
-                <h3 class="mb-4 font-poppins text-3xl font-bold text-white md:text-4xl">
-                  Remera Intención
-                </h3>
-                <p class="mb-8 text-lg text-gray-300 md:text-xl">
-                  Dedicada a quienes saben que cada acción inicia por una intención: lleva tu propósito en tu
-                  vestimenta.
-                </p>
-                <a href="#"
-                  class="inline-flex items-center justify-center rounded-full bg-teal-400 px-8 py-4 font-inter text-lg font-semibold text-[#101010] shadow-lg transition-colors hover:bg-teal-300 focus:outline-none">
-                  VER DETALLE
-                </a>
-              </div>
-            </div>
-          </div>
-          <div
-            class="carousel-slide hidden flex w-full flex-col items-center justify-center transition-transform duration-500">
-            <div class="flex flex-col-reverse items-center gap-8 md:flex-row md:gap-16">
-              <div
-                class="relative aspect-square w-72 max-w-[60vw] overflow-hidden rounded-3xl bg-gradient-to-br from-cyan-400/20 to-teal-600/20 shadow-xl sm:w-80 md:w-96">
-                <img src="https://dummyimage.com/440x440/11f2b9/1f213b&text=Remera+Luz" alt="Remera Luz"
-                  class="object-cover w-full h-full" />
-              </div>
-              <div class="flex max-w-xl flex-col items-center md:items-start">
-                <h3 class="mb-4 font-poppins text-3xl font-bold text-white md:text-4xl">
-                  Remera Luz
-                </h3>
-                <p class="mb-8 text-lg text-gray-300 md:text-xl">
-                  Llevá la energía del color y la vibración positiva con este diseño iluminado por la intención.
-                </p>
-                <a href="#"
-                  class="inline-flex items-center justify-center rounded-full bg-teal-400 px-8 py-4 font-inter text-lg font-semibold text-[#101010] shadow-lg transition-colors hover:bg-teal-300 focus:outline-none">
-                  VER DETALLE
-                </a>
+                <div class="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
+                  <a href="#"
+                    class="inline-flex items-center justify-center rounded-full bg-teal-400 px-8 py-4 font-inter text-lg font-semibold text-[#101010] shadow-lg transition-colors hover:bg-teal-300 focus:outline-none">
+                    VER DETALLE
+                  </a>
+                  <button type="button"
+                    class="buy-btn inline-flex items-center justify-center rounded-full border border-teal-400 px-8 py-4 font-inter text-lg font-semibold text-white shadow-lg transition-colors hover:bg-teal-400/10 focus:outline-none focus:ring-2 focus:ring-teal-400"
+                    data-product-id="remera-esencia"
+                    data-product-name="Remera Esencia"
+                    data-product-price="17500"
+                    data-product-image="./public/img/reme-tatei.jpg">
+                    COMPRAR
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
         <div id="carousel-indicators" class="mt-8 flex justify-center gap-3">
-          <button data-slide="0"
-            class="carousel-indicator h-3 w-3 rounded-full bg-teal-400 border-2 border-teal-200 opacity-100 transition-all active"></button>
-          <button data-slide="1"
-            class="carousel-indicator h-3 w-3 rounded-full bg-teal-300 border-2 border-teal-200 opacity-50 transition-all"></button>
-          <button data-slide="2"
-            class="carousel-indicator h-3 w-3 rounded-full bg-teal-300 border-2 border-teal-200 opacity-50 transition-all"></button>
-          <button data-slide="3"
-            class="carousel-indicator h-3 w-3 rounded-full bg-teal-300 border-2 border-teal-200 opacity-50 transition-all"></button>
-          <button data-slide="4"
-            class="carousel-indicator h-3 w-3 rounded-full bg-teal-300 border-2 border-teal-200 opacity-50 transition-all"></button>
+          <button class="carousel-indicator h-2 w-2 rounded-full bg-teal-400 opacity-100 transition-all" aria-label="Slide 1"></button>
+          <button class="carousel-indicator h-2 w-2 rounded-full bg-teal-300 opacity-50 transition-all" aria-label="Slide 2"></button>
         </div>
       </div>
       <a href="#"
@@ -461,18 +403,18 @@
       </a>
     </section>
 
-    <section class="bg-[#101010] text-white">
+    <section class="relative flex h-screen flex-col justify-end bg-[#101010] text-white">
       <div class="px-6 py-16 md:py-20">
         <div class="mx-auto max-w-2xl text-center">
           <h2
-            class="mb-4 font-[family-name:var(--font-poppins)] text-4xl font-bold leading-tight md:text-5xl">
+            class="anim-child mb-4 font-[family-name:var(--font-poppins)] text-4xl font-bold leading-tight md:text-5xl opacity-0 translate-y-4">
             Mantenete en Frecuencia
           </h2>
           <p
-            class="mb-8 font-[family-name:var(--font-inter)] text-base leading-relaxed text-gray-300 md:text-lg">
+            class="anim-child mb-8 font-[family-name:var(--font-inter)] text-base leading-relaxed text-gray-300 md:text-lg opacity-0 translate-y-4 delay-50">
             Suscribite a nuestro newsletter y recibí contenido exclusivo, lanzamientos y novedades.
           </p>
-          <form class="mx-auto flex max-w-md flex-col gap-3 sm:flex-row">
+          <form class="anim-child mx-auto flex max-w-md flex-col gap-3 sm:flex-row opacity-0 translate-y-4 delay-75">
             <input type="email" placeholder="Your Email"
               class="flex-1 rounded-lg border border-gray-700 bg-[#1a1a1a] px-4 py-3 font-[family-name:var(--font-inter)] text-white placeholder:text-gray-500 focus:outline-none focus:border-[#00FFFF]" />
             <button type="submit"
@@ -493,12 +435,11 @@
               © 2025 BUDHA.Om. Todos los derechos reservados.
             </p>
           </div>
-
           <div class="text-center md:text-left">
             <h4 class="mb-4 font-[family-name:var(--font-inter)] text-base font-semibold">Navegación</h4>
             <ul class="space-y-3">
               <li>
-                <a href="#"
+                <a href="./coleccion-energizada.html"
                   class="font-[family-name:var(--font-inter)] text-sm text-gray-300 transition-colors hover:text-white">
                   Tienda
                 </a>
@@ -517,7 +458,6 @@
               </li>
             </ul>
           </div>
-
           <div class="text-center md:text-left">
             <h4 class="mb-4 font-[family-name:var(--font-inter)] text-base font-semibold">Ayuda</h4>
             <ul class="space-y-3">
@@ -541,7 +481,6 @@
               </li>
             </ul>
           </div>
-
           <div class="col-span-2 md:col-span-1 text-center md:text-left">
             <h4 class="mb-4 font-[family-name:var(--font-inter)] text-base font-semibold">Seguinos</h4>
             <div class="flex gap-4 justify-center md:justify-start">
@@ -573,507 +512,48 @@
     </section>
 
   </main>
+  
+  <!-- Carrito lateral -->
+  <div id="cart-overlay" class="fixed inset-0 bg-black/70 backdrop-blur-sm opacity-0 pointer-events-none hidden transition-opacity duration-300 z-[55]" aria-hidden="true"></div>
+  <aside id="cart-panel" class="hidden fixed top-0 right-0 h-full w-full max-w-md bg-[#111111] text-white transform translate-x-full transition-transform duration-300 z-[60] flex flex-col shadow-[-12px_0_40px_rgba(0,0,0,0.45)] pt-24" aria-hidden="true">
+    <div class="flex items-center justify-between px-6 py-5 border-b border-white/10">
+      <h2 class="text-xl font-semibold font-inter">Carrito de compras</h2>
+      <button id="cart-close-btn" type="button" class="text-gray-300 hover:text-white transition-colors focus:outline-none" aria-label="Cerrar carrito">
+        <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+    <div id="cart-items-wrapper" class="flex-1 overflow-y-auto px-6 py-4">
+      <div id="cart-empty-state" class="flex h-full flex-col items-center justify-center text-center gap-3 text-gray-400">
+        <svg class="h-12 w-12 text-gray-500" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24">
+          <path d="M3 3h2l.4 2M7 13h10l1.5-6H5.4" stroke-linecap="round" stroke-linejoin="round"></path>
+          <circle cx="9" cy="19" r="1.5"></circle>
+          <circle cx="17" cy="19" r="1.5"></circle>
+        </svg>
+        <p class="font-inter text-sm">Tu carrito está vacío. Empezá a sumar energía.</p>
+      </div>
+      <ul id="cart-items-list" class="space-y-4 hidden"></ul>
+    </div>
+    <div class="border-t border-white/10 px-6 py-5 space-y-4">
+      <div class="flex items-center justify-between text-sm font-inter text-gray-300">
+        <span>Subtotal (sin envío)</span>
+        <span id="cart-subtotal" class="text-lg font-semibold text-white">$0</span>
+      </div>
+      <div class="rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-gray-300 font-inter">
+        <p class="font-semibold text-white mb-1">Envíos & Retiro</p>
+        <p>Ingresá tu código postal durante el checkout para calcular el envío o elegí retirar sin costo.</p>
+      </div>
+      <button id="cart-checkout-btn" type="button" class="w-full rounded-full bg-[#00FFFF] py-4 text-[#101010] font-inter font-semibold uppercase tracking-wide transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[#00FFFF]">
+        Iniciar compra
+      </button>
+      <button id="cart-continue-btn" type="button" class="w-full text-sm text-gray-400 hover:text-white transition-colors font-inter">
+        Seguir explorando
+      </button>
+    </div>
+  </aside>
+  
+  <script src="./app.js" defer></script>
 
-  <script>
-    // ===============================================
-    // SCRIPT PRINCIPAL DE SCROLL Y ANIMACIÓN
-    // ===============================================
-    (function () {
-      /**
-       * Esta función busca todos los elementos animados dentro de una sección
-       * y les aplica la animación con su delay correspondiente.
-       */
-      function triggerSectionAnimations(sectionElement) {
-        if (!sectionElement) return;
-
-        // Usamos .anim-child como selector principal
-        const animatedElements = sectionElement.querySelectorAll('.anim-child');
-
-        animatedElements.forEach(element => {
-          // Asegurarnos de no re-animar lo que ya se animó
-          if (!element.classList.contains('opacity-0')) return;
-
-          const delayClass = Array.from(element.classList).find(c => c.startsWith('delay-'));
-          const delay = delayClass ? parseInt(delayClass.split('-')[1]) : 0;
-
-          setTimeout(() => {
-            // Agregamos las clases de transición por si no las tienen
-            element.classList.add('transition-all', 'duration-700', 'ease-out');
-
-            // Quitamos la opacidad y la transformación inicial
-            element.classList.remove('opacity-0');
-
-            if (element.classList.contains('translate-y-4')) {
-              element.classList.remove('translate-y-4');
-              element.classList.add('translate-y-0');
-            }
-            if (element.classList.contains('-translate-x-8')) {
-              element.classList.remove('-translate-x-8');
-              element.classList.add('translate-x-0');
-            }
-            if (element.classList.contains('translate-x-8')) {
-              element.classList.remove('translate-x-8');
-              element.classList.add('translate-x-0');
-            }
-
-            // Agregamos la opacidad final
-            element.classList.add('opacity-100');
-          }, delay);
-        });
-      }
-
-      const main = document.querySelector('main');
-      const sections = Array.from(main.querySelectorAll(':scope > section'));
-      let currentIndex = 0;
-      let isScrolling = false;
-      const horizontalPairs = new Set([
-        '3-4', '4-3',
-        '4-5', '5-4',
-        '5-6', '6-5',
-      ]);
-
-      let isLocked = false;
-      const preventAll = (e) => {
-        // Permitir eventos en el botón del menú móvil y en el menú
-        const target = e.target;
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const closeMobileMenuBtn = document.getElementById('close-mobile-menu');
-        const mobileMenu = document.getElementById('mobile-menu');
-        
-        // Excepción para el botón de abrir menú
-        if (mobileMenuBtn && (mobileMenuBtn.contains(target) || mobileMenuBtn === target)) {
-          return; 
-        }
-        // Excepción para el botón de cerrar menú
-        if (closeMobileMenuBtn && (closeMobileMenuBtn.contains(target) || closeMobileMenuBtn === target)) {
-          return; 
-        }
-        // Excepción para todo el panel del menú (incluidos links)
-        if (mobileMenu && (mobileMenu.contains(target) || mobileMenu === target)) {
-          return; 
-        }
-        
-        // Excepción para enlaces que apuntan a otras páginas HTML
-        const link = target.closest('a');
-        if (link && link.href) {
-          const href = link.getAttribute('href');
-          if (href && !href.startsWith('#') && (href.endsWith('.html') || href.includes('.html'))) {
-            return; // Permitir que el enlace funcione normalmente
-          }
-        }
-        
-        // Si no es una excepción, bloquea el evento
-        e.preventDefault();
-        e.stopPropagation();
-      };
-
-      function setScrollLock(lock) {
-        if (lock === isLocked) return;
-        isLocked = lock;
-        if (lock) {
-          document.body.style.overflow = 'hidden';
-          main.style.overflow = 'hidden';
-          window.addEventListener('wheel', preventAll, { passive: false });
-          window.addEventListener('touchmove', preventAll, { passive: false });
-          window.addEventListener('keydown', preventAll, { passive: false });
-        } else {
-          window.removeEventListener('wheel', preventAll, { passive: false });
-          window.removeEventListener('touchmove', preventAll, { passive: false });
-          window.removeEventListener('keydown', preventAll, { passive: false });
-          document.body.style.overflow = 'hidden';
-          main.style.overflow = 'hidden';
-        }
-      }
-
-      function animateHorizontal(toIndex, direction) {
-        const el = sections[toIndex];
-        const fromEl = sections[currentIndex];
-        if (!el || !fromEl) return;
-        setScrollLock(true);
-        const prev = {
-          position: el.style.position,
-          inset: el.style.inset,
-          transform: el.style.transform,
-          transition: el.style.transition,
-          zIndex: el.style.zIndex,
-          opacity: el.style.opacity,
-        };
-        const prevFrom = {
-          position: fromEl.style.position,
-          inset: fromEl.style.inset,
-          transform: fromEl.style.transform,
-          transition: fromEl.style.transition,
-          zIndex: fromEl.style.zIndex,
-          opacity: fromEl.style.opacity,
-          filter: fromEl.style.filter,
-        };
-        el.style.position = 'fixed';
-        el.style.inset = '0';
-        el.style.zIndex = '50';
-        el.style.opacity = '0.2';
-        el.style.transform = direction === 'right' ? 'translateX(100%)' : 'translateX(-100%)';
-        const dur = 1000;
-        el.style.transition = `transform ${dur}ms cubic-bezier(0.22, 1, 0.36, 1), opacity ${dur}ms ease-out`;
-
-        fromEl.style.position = 'fixed';
-        fromEl.style.inset = '0';
-        fromEl.style.zIndex = '30';
-        fromEl.style.transition = `transform ${dur}ms cubic-bezier(0.22, 1, 0.36, 1), filter ${dur}ms ease-out, opacity ${dur}ms ease-out`;
-        fromEl.style.transform = direction === 'right' ? 'translateX(-8%)' : 'translateX(8%)';
-        fromEl.style.filter = 'blur(1px)';
-        fromEl.style.opacity = '0.85';
-        requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
-            el.style.transform = 'translateX(0)';
-            el.style.opacity = '1';
-          });
-        });
-        setTimeout(() => {
-          el.style.position = prev.position || '';
-          el.style.inset = prev.inset || '';
-          el.style.transform = prev.transform || '';
-          el.style.transition = prev.transition || '';
-          el.style.zIndex = prev.zIndex || '';
-          el.style.opacity = prev.opacity || '';
-          fromEl.style.position = prevFrom.position || '';
-          fromEl.style.inset = prevFrom.inset || '';
-          fromEl.style.transform = prevFrom.transform || '';
-          fromEl.style.transition = prevFrom.transition || '';
-          fromEl.style.zIndex = prevFrom.zIndex || '';
-          fromEl.style.opacity = prevFrom.opacity || '';
-          fromEl.style.filter = prevFrom.filter || '';
-
-          triggerSectionAnimations(el); // <-- DISPARAMOS ANIMACIÓN
-
-          const top = el.offsetTop;
-          main.scrollTo({ top, behavior: 'auto' });
-          setTimeout(() => {
-            setScrollLock(false);
-            isScrolling = false;
-          }, 100);
-          currentIndex = toIndex;
-        }, dur + 20);
-      }
-
-      function animateVertical(toIndex, direction) {
-        const el = sections[toIndex];
-        const fromEl = sections[currentIndex];
-        if (!el) return;
-        setScrollLock(true);
-        const prev = {
-          position: el.style.position,
-          inset: el.style.inset,
-          transform: el.style.transform,
-          transition: el.style.transition,
-          zIndex: el.style.zIndex,
-          opacity: el.style.opacity,
-        };
-        const prevFrom = fromEl ? {
-          position: fromEl.style.position,
-          inset: fromEl.style.inset,
-          transform: fromEl.style.transform,
-          transition: fromEl.style.transition,
-          zIndex: fromEl.style.zIndex,
-          opacity: fromEl.style.opacity,
-          filter: fromEl.style.filter,
-        } : null;
-
-        el.style.position = 'fixed';
-        el.style.inset = '0';
-        el.style.zIndex = '40';
-        el.style.opacity = '0.2';
-        const startY = direction === 'down' ? '8%' : '-8%';
-        el.style.transform = `translateY(${startY})`;
-        const dur = 700;
-        el.style.transition = `transform ${dur}ms cubic-bezier(0.22, 1, 0.36, 1), opacity ${dur}ms ease-out`;
-
-        if (fromEl && prevFrom) {
-          fromEl.style.position = 'fixed';
-          fromEl.style.inset = '0';
-          fromEl.style.zIndex = '30';
-          fromEl.style.transition = `transform ${dur}ms cubic-bezier(0.22, 1, 0.36, 1), filter ${dur}ms ease-out, opacity ${dur}ms ease-out`;
-          const exitY = direction === 'down' ? '-6%' : '6%';
-          fromEl.style.transform = `translateY(${exitY})`;
-          fromEl.style.filter = 'blur(0.5px)';
-          fromEl.style.opacity = '0.9';
-        }
-
-        requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
-            el.style.transform = 'translateY(0)';
-            el.style.opacity = '1';
-          });
-        });
-        setTimeout(() => {
-          el.style.position = prev.position || '';
-          el.style.inset = prev.inset || '';
-          el.style.transform = prev.transform || '';
-          el.style.transition = prev.transition || '';
-          el.style.zIndex = prev.zIndex || '';
-          el.style.opacity = prev.opacity || '';
-
-          if (fromEl && prevFrom) {
-            fromEl.style.position = prevFrom.position || '';
-            fromEl.style.inset = prevFrom.inset || '';
-            fromEl.style.transform = prevFrom.transform || '';
-            fromEl.style.transition = prevFrom.transition || '';
-            fromEl.style.zIndex = prevFrom.zIndex || '';
-            fromEl.style.opacity = prevFrom.opacity || '';
-            fromEl.style.filter = prevFrom.filter || '';
-          }
-
-          triggerSectionAnimations(el); // <-- DISPARAMOS ANIMACIÓN
-
-          main.scrollTo({ top: el.offsetTop, behavior: 'auto' });
-          setTimeout(() => { setScrollLock(false); isScrolling = false; }, 80);
-          currentIndex = toIndex;
-        }, dur + 20);
-      }
-
-      function preNudge(direction, axis, then) {
-        const fromEl = sections[currentIndex];
-        if (!fromEl) { then(); return; }
-        setScrollLock(true);
-        const prev = {
-          transform: fromEl.style.transform,
-          transition: fromEl.style.transition,
-          filter: fromEl.style.filter,
-        };
-        const nudge = axis === 'x' ? (direction === 'forward' ? '-6%' : '6%')
-          : (direction === 'forward' ? '-6%' : '6%');
-        const prop = axis === 'x' ? 'translateX' : 'translateY';
-        const dur = 220;
-        fromEl.style.transition = `transform ${dur}ms ease-out, filter ${dur}ms ease-out`;
-        fromEl.style.transform = `${prop}(${nudge})`;
-        fromEl.style.filter = 'blur(0.2px)';
-        setTimeout(() => {
-          fromEl.style.transform = prev.transform || '';
-          fromEl.style.transition = prev.transition || '';
-          fromEl.style.filter = prev.filter || '';
-          setScrollLock(false);
-          then();
-        }, dur + 10);
-      }
-
-      function goTo(index) {
-        if (isScrolling) return;
-        const target = sections[Math.max(0, Math.min(index, sections.length - 1))];
-        if (!target) return;
-        const from = currentIndex;
-        const to = sections.indexOf(target);
-
-        if (to === sections.length - 1) {
-          const top = target.offsetTop;
-          main.scrollTo({ top, behavior: 'smooth' });
-          currentIndex = to;
-          return;
-        }
-
-        isScrolling = true;
-        if (horizontalPairs.has(`${from}-${to}`)) {
-          preNudge(to > from ? 'forward' : 'backward', 'x', () =>
-            animateHorizontal(to, to > from ? 'right' : 'left')
-          );
-          return;
-        }
-        preNudge(to > from ? 'forward' : 'backward', 'y', () =>
-          animateVertical(to, to > from ? 'down' : 'up')
-        );
-      }
-
-      main.addEventListener('wheel', (e) => {
-        // No prevenir si el evento ocurre dentro del menú móvil
-        const mobileMenu = document.getElementById('mobile-menu');
-        if (mobileMenu && !mobileMenu.classList.contains('hidden') && mobileMenu.contains(e.target)) {
-          return; // Permite el scroll dentro del menú
-        }
-        e.preventDefault();
-        if (isScrolling) return;
-        const delta = e.deltaY || 0;
-        if (delta > 10) goTo(currentIndex + 1);
-        else if (delta < -10) goTo(currentIndex - 1);
-      }, { passive: false });
-
-      window.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); goTo(currentIndex + 1); }
-        if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); goTo(currentIndex - 1); }
-      });
-      let touchY = null;
-      main.addEventListener('touchstart', (e) => {
-        const target = e.target;
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const closeMobileMenuBtn = document.getElementById('close-mobile-menu');
-        const mobileMenu = document.getElementById('mobile-menu');
-        
-        // Verificar si el touch es en un enlace que apunta a otra página HTML
-        const link = target.closest('a');
-        if (link && link.href) {
-          const href = link.getAttribute('href');
-          if (href && !href.startsWith('#') && (href.endsWith('.html') || href.includes('.html'))) {
-            touchY = null; // No iniciar scroll si es un enlace externo
-            return; // Permitir que el enlace funcione normalmente
-          }
-        }
-        
-        if ((mobileMenuBtn && mobileMenuBtn.contains(target)) || 
-            (closeMobileMenuBtn && closeMobileMenuBtn.contains(target)) ||
-            (mobileMenu && mobileMenu.contains(target))) {
-          touchY = null; // No iniciar scroll si se toca el menú
-          return; 
-        }
-        
-        touchY = e.touches[0].clientY;
-      }, { passive: true });
-      main.addEventListener('touchmove', (e) => {
-        if (touchY == null) return;
-        const dy = e.touches[0].clientY - touchY;
-        if (Math.abs(dy) < 30 || isScrolling) return;
-        e.preventDefault();
-        if (dy < 0) goTo(currentIndex + 1); else goTo(currentIndex - 1);
-        touchY = null;
-      }, { passive: false });
-
-      // Permitir navegación normal en enlaces que apuntan a otras páginas HTML
-      document.addEventListener('click', (e) => {
-        const target = e.target.closest('a');
-        if (target && target.href) {
-          const href = target.getAttribute('href');
-          // Si el enlace apunta a una página HTML (no es un anchor #)
-          if (href && !href.startsWith('#') && (href.endsWith('.html') || href.includes('.html'))) {
-            // Detener cualquier scroll lock activo
-            setScrollLock(false);
-            isScrolling = false;
-            // Permitir la navegación normal - no hacer nada, dejar que el navegador maneje el click
-            return;
-          }
-        }
-      }, { capture: true, passive: true });
-
-      // Trigger animations for the first section on initial load
-      document.addEventListener('DOMContentLoaded', () => {
-        if (sections.length > 0) {
-          setTimeout(() => {
-            triggerSectionAnimations(sections[0]);
-          }, 100); // Pequeño delay para asegurar que todo esté listo
-        }
-      });
-    })();
-
-    // ===============================================
-    // SCRIPT DEL MENÚ MÓVIL (SIMPLE Y CORREGIDO)
-    // ===============================================
-    function initSimpleMobileMenu() {
-      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-      const closeMobileMenuBtn = document.getElementById('close-mobile-menu');
-      const mobileMenu = document.getElementById('mobile-menu');
-
-      if (!mobileMenuBtn || !mobileMenu || !closeMobileMenuBtn) {
-        console.warn('Elementos del menú móvil no encontrados');
-        return;
-      }
-
-      function toggleMenu(e) {
-        e.stopPropagation(); // Prevenir que el 'main' capture este click/touch
-        mobileMenu.classList.toggle('hidden');
-      }
-
-      function closeMenu(e) {
-        e.stopPropagation(); // Prevenir que el 'main' capture este click/touch
-        mobileMenu.classList.add('hidden');
-      }
-
-      // Usar 'click' es más robusto y maneja tanto touch como mouse
-      mobileMenuBtn.addEventListener('click', toggleMenu);
-      closeMobileMenuBtn.addEventListener('click', closeMenu);
-
-      // Opcional: cerrar si se clickea en un link
-      const mobileMenuLinks = mobileMenu.querySelectorAll('a');
-      mobileMenuLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-          e.stopPropagation(); // Prevenir que el 'main' capture este click
-          closeMenu(e);
-        });
-      });
-    }
-
-    // Inicializar cuando el DOM esté listo
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initSimpleMobileMenu);
-    } else {
-      initSimpleMobileMenu(); // El DOM ya está listo
-    }
-
-
-    // ===============================================
-    // SCRIPT DEL CARRUSEL
-    // ===============================================
-    (function () {
-      const carouselSlides = document.querySelectorAll('.carousel-slide');
-      const prevBtn = document.getElementById('carousel-prev');
-      const nextBtn = document.getElementById('carousel-next');
-      const indicators = document.querySelectorAll('.carousel-indicator');
-      
-      if (carouselSlides.length === 0) return; // No hacer nada si no hay carrusel
-      
-      let currentSlide = 0;
-
-      function updateIndicators(index) {
-        indicators.forEach((indicator, i) => {
-          if (i === index) {
-            indicator.classList.add('active');
-            indicator.classList.add('bg-teal-400');
-            indicator.classList.remove('bg-teal-300');
-            indicator.classList.add('opacity-100');
-            indicator.classList.remove('opacity-50');
-          } else {
-            indicator.classList.remove('active');
-            indicator.classList.remove('bg-teal-400');
-            indicator.classList.add('bg-teal-300');
-            indicator.classList.remove('opacity-100');
-            indicator.classList.add('opacity-50');
-
-          }
-        });
-      }
-
-      function showSlide(index) {
-        carouselSlides.forEach((slide, i) => {
-          if (i === index) {
-            slide.classList.remove('hidden');
-          } else {
-            slide.classList.add('hidden');
-          }
-        });
-        updateIndicators(index);
-      }
-
-      function nextSlide(e) {
-        if (e) e.stopPropagation(); // Prevenir que el scroll principal lo capture
-        currentSlide = (currentSlide + 1) % carouselSlides.length;
-        showSlide(currentSlide);
-      }
-
-      function prevSlide(e) {
-        if (e) e.stopPropagation(); // Prevenir que el scroll principal lo capture
-        currentSlide = (currentSlide - 1 + carouselSlides.length) % carouselSlides.length;
-        showSlide(currentSlide);
-      }
-
-      function goToSlide(index) {
-        currentSlide = index;
-        showSlide(currentSlide);
-      }
-
-      if (nextBtn) nextBtn.addEventListener('click', nextSlide);
-      if (prevBtn) prevBtn.addEventListener('click', prevSlide);
-      indicators.forEach((indicator, index) => {
-        indicator.addEventListener('click', function (e) {
-          e.stopPropagation(); // Prevenir que el scroll principal lo capture
-          goToSlide(index);
-        });
-      });
-    })();
-  </script>
 </body>
-
 </html>

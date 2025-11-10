@@ -7,16 +7,18 @@
   <title>BUDHA.Om - Colección Energizada</title>
   <link href="./dist/output.css" rel="stylesheet">
   <style>
+    :root {
+      --font-poppins: 'Poppins', sans-serif;
+      --font-inter: 'Inter', sans-serif;
+    }
     html { scrollbar-width: none; }
     body { -ms-overflow-style: none; }
     body::-webkit-scrollbar { display: none; width: 0; height: 0; }
-    .hero-title { font-size: 4rem; line-height: 1.1; }
-    @media (min-width: 768px) { .hero-title { font-size: 4.5rem !important; } }
-    @media (min-width: 1024px) { .hero-title { font-size: 6rem !important; } }
   </style>
+  <script src="https://unpkg.com/@barba/core"></script>
 </head>
 
-<body class="bg-[#101010]">
+<body class="bg-[#101010]" data-barba="wrapper">
 
   <div class="fixed inset-0 -z-10 pointer-events-none" aria-hidden="true">
     <div class="absolute inset-0 bg-[#0b0b0b]"></div>
@@ -24,39 +26,39 @@
     </div>
   </div>
 
-  <nav id="main-navbar" class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 py-6 md:px-8 lg:px-16 bg-transparent transition-colors duration-300" style="position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; width: 100% !important; z-index: 9999 !important;">
+  <nav id="main-navbar" class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 py-6 md:px-8 lg:px-16 bg-transparent transition-colors duration-300">
       <a href="./index.html">
         <img src="./public/img/budha-logo2.png" alt="Logo BUDHA.Om" class="h-16 md:h-18 w-auto drop-shadow-[0_0_8px_rgba(0,0,0,0.35)]" />
       </a>
       <div class="hidden items-center gap-8 md:flex">
         <a href="/tienda"
-          class="text-white transition-colors hover:opacity-80 font-inter drop-shadow-[0_0_4px_rgba(0,0,0,0.3)]">
+          class="text-white transition-colors hover:opacity-80 drop-shadow-[0_0_4px_rgba(0,0,0,0.3)] font-[Inter,sans-serif]">
           Tienda
         </a>
         <a href="/tecnologia"
-          class="text-white transition-colors hover:opacity-80 font-inter drop-shadow-[0_0_4px_rgba(0,0,0,0.3)]">
+          class="text-white transition-colors hover:opacity-80 drop-shadow-[0_0_4px_rgba(0,0,0,0.3)] font-[Inter,sans-serif]">
           Tecnología Cuántica
         </a>
         <a href="/filosofia"
-          class="text-white transition-colors hover:opacity-80 font-inter drop-shadow-[0_0_4px_rgba(0,0,0,0.3)]">
+          class="text-white transition-colors hover:opacity-80 drop-shadow-[0_0_4px_rgba(0,0,0,0.3)] font-[Inter,sans-serif]">
           Nuestra Filosofía
         </a>
         <a href="/contacto"
-          class="text-white transition-colors hover:opacity-80 font-inter drop-shadow-[0_0_4px_rgba(0,0,0,0.3)]">
+          class="text-white transition-colors hover:opacity-80 drop-shadow-[0_0_4px_rgba(0,0,0,0.3)] font-[Inter,sans-serif]">
           Contacto
         </a>
       </div>
       <div class="flex items-center gap-4">
         <button id="mobile-menu-btn" type="button"
-          class="md:hidden text-white transition-colors hover:opacity-80 drop-shadow-[0_0_4px_rgba(0,0,0,0.35)] relative z-50"
-          style="cursor: pointer;">
+          class="md:hidden text-white transition-colors hover:opacity-80 drop-shadow-[0_0_4px_rgba(0,0,0,0.35)] relative z-50 cursor-pointer">
           <svg class="h-6 w-6 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
             aria-hidden="true">
             <path d="M3 12h18M3 6h18M3 18h18" />
           </svg>
         </button>
-        <button class="text-white transition-colors hover:opacity-80 drop-shadow-[0_0_4px_rgba(0,0,0,0.35)]"
-          style="cursor: pointer;">
+        <button id="cart-toggle-btn" type="button"
+          class="text-white transition-colors hover:opacity-80 drop-shadow-[0_0_4px_rgba(0,0,0,0.35)] cursor-pointer"
+          aria-label="Abrir carrito">
           <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
             aria-hidden="true">
             <circle cx="9" cy="21" r="1" />
@@ -71,24 +73,24 @@
     class="hidden md:hidden fixed top-0 left-0 right-0 bg-[#101010] border-t border-gray-800 z-40 pt-20">
     <div class="flex flex-col px-4 py-4 gap-4">
       <div class="flex items-center justify-between mb-2">
-        <span class="text-white font-inter font-semibold">Menú</span>
-        <button id="close-mobile-menu" class="text-white transition-colors hover:opacity-80" style="cursor: pointer;">
+        <span class="text-white font-semibold font-[Inter,sans-serif]">Menú</span>
+        <button id="close-mobile-menu" class="text-white transition-colors hover:opacity-80 cursor-pointer">
           <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
             aria-label="Cerrar menú">
             <path d="M18 6L6 18M6 6l12 12" />
           </svg>
         </button>
       </div>
-      <a href="/tienda" class="text-white transition-colors hover:opacity-80 font-inter py-2">Tienda</a>
-      <a href="/tecnologia" class="text-white transition-colors hover:opacity-80 font-inter py-2">Tecnología
+      <a href="/tienda" class="text-white transition-colors hover:opacity-80 py-2 font-[Inter,sans-serif]">Tienda</a>
+      <a href="/tecnologia" class="text-white transition-colors hover:opacity-80 py-2 font-[Inter,sans-serif]">Tecnología
         Cuántica</a>
-      <a href="/filosofia" class="text-white transition-colors hover:opacity-80 font-inter py-2">Nuestra
+      <a href="/filosofia" class="text-white transition-colors hover:opacity-80 py-2 font-[Inter,sans-serif]">Nuestra
         Filosofía</a>
-      <a href="/contacto" class="text-white transition-colors hover:opacity-80 font-inter py-2">Contacto</a>
+      <a href="/contacto" class="text-white transition-colors hover:opacity-80 py-2 font-[Inter,sans-serif]">Contacto</a>
     </div>
   </div>
 
-  <main class="bg-[#101010] text-white">
+  <main class="relative z-10 bg-[#101010] text-white" data-barba="container" data-barba-namespace="coleccion">
     <section class="relative w-full h-screen overflow-hidden">
       <video class="object-cover w-full h-full" autoplay loop muted playsinline>
         <source src="./public/video/video-energizada.mp4" type="video/mp4" />
@@ -98,95 +100,185 @@
       <div class="absolute inset-0 bg-black/40 z-0"></div>
 
       <div class="absolute inset-0 flex flex-col items-center justify-center z-10 px-4">
-        <h1 class="anim-child hero-title font-bold text-white mb-4 text-center drop-shadow-[0_0_10px_rgba(0,0,0,0.8)] opacity-0 translate-y-4" style="font-family: Poppins, sans-serif;">
+        <h1 class="anim-child text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 text-center drop-shadow-[0_0_10px_rgba(0,0,0,0.8)] opacity-0 translate-y-4 font-[Poppins,sans-serif]">
           Colección Energizada
         </h1>
-        <p class="anim-child text-xl md:text-2xl text-white text-center max-w-2xl drop-shadow-[0_0_6px_rgba(0,0,0,0.7)] opacity-0 translate-y-4 delay-50" style="font-family: Inter, sans-serif;">
+        <p class="anim-child text-xl md:text-2xl text-white text-center max-w-2xl drop-shadow-[0_0_6px_rgba(0,0,0,0.7)] opacity-0 translate-y-4 delay-50 font-[Inter,sans-serif]">
           Descubre nuestra nueva coleccion, tiene un diseño minimalista. Combina tecnología avanzada para energizar tu
           estilo.
         </p>
       </div>
     </section>
 
-    <section class="py-16 px-4 sm:px-6 lg:px-8">
+    <section class="py-16 px-4 sm:px-6 lg:px-8 bg-[#101010]">
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-6 max-w-7xl mx-auto">
 
-        <a href="./producto-detalle.html" class="anim-child group bg-[#141414] rounded-lg overflow-hidden transition-all hover:ring-2 hover:ring-[#00FFFF] cursor-pointer flex flex-col opacity-0 translate-y-4 delay-75">
-          <div class="aspect-square relative w-full overflow-hidden bg-[#1a1a1a]">
-            <img src="./public/img/reme2.png" alt="Quantum Hoodie" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+        <article class="anim-child group bg-[#141414] rounded-lg overflow-hidden transition-all hover:ring-2 hover:ring-[#00FFFF] cursor-default flex flex-col opacity-0 translate-y-4 delay-75 parallax-card">
+          <a href="./producto-detalle.html" class="flex-1 flex flex-col">
+            <div class="aspect-square relative w-full overflow-hidden bg-[#1a1a1a]">
+              <img src="./public/img/reme2.png" alt="Quantum Hoodie" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 parallax-image" />
+              <div class="absolute top-3 right-3 z-10 h-16 w-16 rounded-full bg-black/50 p-1.5 backdrop-blur-sm" title="Producto Energizado (Enigma)">
+                <img src="./public/img/logo-enigma-blanco.png" alt="Logo Enigma Energizado" class="h-full w-full object-contain">
+              </div>
+            </div>
+            <div class="p-4 lg:p-6">
+              <h3 class="font-bold text-white mb-2 text-lg sm:text-xl lg:text-xl font-[Poppins,sans-serif]">Quantum Hoodie</h3>
+              <p class="text-gray-400 text-base sm:text-lg lg:text-base font-[Inter,sans-serif]">$150</p>
+            </div>
+          </a>
+          <div class="px-4 pb-4 lg:px-6 lg:pb-6">
+            <button type="button"
+              class="buy-btn w-full rounded-full bg-[#00FFFF] px-6 py-3 text-[#101010] font-[Inter,sans-serif] font-semibold uppercase tracking-wide transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[#00FFFF]"
+              data-product-id="quantum-hoodie"
+              data-product-name="Quantum Hoodie"
+              data-product-price="150"
+              data-product-image="./public/img/reme2.png">
+              COMPRAR
+            </button>
           </div>
-          <div class="p-4 lg:p-6">
-            <h3 class="font-bold text-white mb-2 text-lg sm:text-xl lg:text-xl" style="font-family: Poppins, sans-serif;">Quantum Hoodie</h3>
-            <p class="text-gray-400 text-base sm:text-lg lg:text-base" style="font-family: Inter, sans-serif;">$150</p>
-          </div>
-        </a>
+        </article>
 
-        <a href="./producto-detalle.html" class="anim-child group bg-[#141414] rounded-lg overflow-hidden transition-all hover:ring-2 hover:ring-[#00FFFF] cursor-pointer flex flex-col opacity-0 translate-y-4 delay-100">
-          <div class="aspect-square relative w-full overflow-hidden bg-[#1a1a1a]">
-            <img src="./public/img/reme-tatei.jpg" alt="Zenith Tee" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+        <article class="anim-child group bg-[#141414] rounded-lg overflow-hidden transition-all hover:ring-2 hover:ring-[#00FFFF] cursor-default flex flex-col opacity-0 translate-y-4 delay-100 parallax-card">
+          <a href="./producto-detalle.html" class="flex-1 flex flex-col">
+            <div class="aspect-square relative w-full overflow-hidden bg-[#1a1a1a]">
+              <img src="./public/img/reme-tatei.jpg" alt="Zenith Tee" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 parallax-image" />
+              <div class="absolute top-3 right-3 z-10 h-16 w-16 rounded-full bg-black/50 p-1.5 backdrop-blur-sm" title="Producto Energizado (Enigma)">
+                <img src="./public/img/logo-enigma-blanco.png" alt="Logo Enigma Energizado" class="h-full w-full object-contain">
+              </div>
+            </div>
+            <div class="p-4 lg:p-6">
+              <h3 class="font-bold text-white mb-2 text-lg sm:text-xl lg:text-xl font-[Poppins,sans-serif]">Zenith Tee</h3>
+              <p class="text-gray-400 text-base sm:text-lg lg:text-base font-[Inter,sans-serif]">$80</p>
+            </div>
+          </a>
+          <div class="px-4 pb-4 lg:px-6 lg:pb-6">
+            <button type="button"
+              class="buy-btn w-full rounded-full bg-[#00FFFF] px-6 py-3 text-[#101010] font-[Inter,sans-serif] font-semibold uppercase tracking-wide transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[#00FFFF]"
+              data-product-id="zenith-tee"
+              data-product-name="Zenith Tee"
+              data-product-price="80"
+              data-product-image="./public/img/reme-tatei.jpg">
+              COMPRAR
+            </button>
           </div>
-          <div class="p-4 lg:p-6">
-            <h3 class="font-bold text-white mb-2 text-lg sm:text-xl lg:text-xl" style="font-family: Poppins, sans-serif;">Zenith Tee</h3>
-            <p class="text-gray-400 text-base sm:text-lg lg:text-base" style="font-family: Inter, sans-serif;">$80</p>
-          </div>
-        </a>
+        </article>
 
-        <a href="./producto-detalle.html" class="anim-child group bg-[#141414] rounded-lg overflow-hidden transition-all hover:ring-2 hover:ring-[#00FFFF] cursor-pointer flex flex-col opacity-0 translate-y-4 delay-150">
-          <div class="aspect-square relative w-full overflow-hidden bg-[#1a1a1a]">
-            <img src="./public/img/reme2.png" alt="Momentum Trousers" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+        <article class="anim-child group bg-[#141414] rounded-lg overflow-hidden transition-all hover:ring-2 hover:ring-[#00FFFF] cursor-default flex flex-col opacity-0 translate-y-4 delay-150 parallax-card">
+          <a href="./producto-detalle.html" class="flex-1 flex flex-col">
+            <div class="aspect-square relative w-full overflow-hidden bg-[#1a1a1a]">
+              <img src="./public/img/reme2.png" alt="Momentum Trousers" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 parallax-image" />
+              <div class="absolute top-3 right-3 z-10 h-16 w-16 rounded-full bg-black/50 p-1.5 backdrop-blur-sm" title="Producto Energizado (Enigma)">
+                <img src="./public/img/logo-enigma-blanco.png" alt="Logo Enigma Energizado" class="h-full w-full object-contain">
+              </div>
+            </div>
+            <div class="p-4 lg:p-6">
+              <h3 class="font-bold text-white mb-2 text-lg sm:text-xl lg:text-xl font-[Poppins,sans-serif]">Momentum Trousers</h3>
+              <p class="text-gray-400 text-base sm:text-lg lg:text-base font-[Inter,sans-serif]">$220</p>
+            </div>
+          </a>
+          <div class="px-4 pb-4 lg:px-6 lg:pb-6">
+            <button type="button"
+              class="buy-btn w-full rounded-full bg-[#00FFFF] px-6 py-3 text-[#101010] font-[Inter,sans-serif] font-semibold uppercase tracking-wide transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[#00FFFF]"
+              data-product-id="momentum-trousers"
+              data-product-name="Momentum Trousers"
+              data-product-price="220"
+              data-product-image="./public/img/reme2.png">
+              COMPRAR
+            </button>
           </div>
-          <div class="p-4 lg:p-6">
-            <h3 class="font-bold text-white mb-2 text-lg sm:text-xl lg:text-xl" style="font-family: Poppins, sans-serif;">Momentum Trousers</h3>
-            <p class="text-gray-400 text-base sm:text-lg lg:text-base" style="font-family: Inter, sans-serif;">$220</p>
-          </div>
-        </a>
+        </article>
 
-        <a href="./producto-detalle.html" class="anim-child group bg-[#141414] rounded-lg overflow-hidden transition-all hover:ring-2 hover:ring-[#00FFFF] cursor-pointer flex flex-col opacity-0 translate-y-4 delay-200">
-          <div class="aspect-square relative w-full overflow-hidden bg-[#1a1a1a]">
-            <img src="./public/img/reme-tatei.jpg" alt="Vortex Jacket" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+        <article class="anim-child group bg-[#141414] rounded-lg overflow-hidden transition-all hover:ring-2 hover:ring-[#00FFFF] cursor-default flex flex-col opacity-0 translate-y-4 delay-200 parallax-card">
+          <a href="./producto-detalle.html" class="flex-1 flex flex-col">
+            <div class="aspect-square relative w-full overflow-hidden bg-[#1a1a1a]">
+              <img src="./public/img/reme-tatei.jpg" alt="Vortex Jacket" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 parallax-image" />
+              <div class="absolute top-3 right-3 z-10 h-16 w-16 rounded-full bg-black/50 p-1.5 backdrop-blur-sm" title="Producto Energizado (Enigma)">
+                <img src="./public/img/logo-enigma-blanco.png" alt="Logo Enigma Energizado" class="h-full w-full object-contain">
+              </div>
+            </div>
+            <div class="p-4 lg:p-6">
+              <h3 class="font-bold text-white mb-2 text-lg sm:text-xl lg:text-xl font-[Poppins,sans-serif]">Vortex Jacket</h3>
+              <p class="text-gray-400 text-base sm:text-lg lg:text-base font-[Inter,sans-serif]">$350</p>
+            </div>
+          </a>
+          <div class="px-4 pb-4 lg:px-6 lg:pb-6">
+            <button type="button"
+              class="buy-btn w-full rounded-full bg-[#00FFFF] px-6 py-3 text-[#101010] font-[Inter,sans-serif] font-semibold uppercase tracking-wide transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[#00FFFF]"
+              data-product-id="vortex-jacket"
+              data-product-name="Vortex Jacket"
+              data-product-price="350"
+              data-product-image="./public/img/reme-tatei.jpg">
+              COMPRAR
+            </button>
           </div>
-          <div class="p-4 lg:p-6">
-            <h3 class="font-bold text-white mb-2 text-lg sm:text-xl lg:text-xl" style="font-family: Poppins, sans-serif;">Vortex Jacket</h3>
-            <p class="text-gray-400 text-base sm:text-lg lg:text-base" style="font-family: Inter, sans-serif;">$350</p>
-          </div>
-        </a>
+        </article>
 
-        <a href="./producto-detalle.html" class="anim-child group bg-[#141414] rounded-lg overflow-hidden transition-all hover:ring-2 hover:ring-[#00FFFF] cursor-pointer flex flex-col opacity-0 translate-y-4 delay-250">
-          <div class="aspect-square relative w-full overflow-hidden bg-[#1a1a1a]">
-            <img src="./public/img/reme2.png" alt="Zenith Tee - Ash" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+        <article class="anim-child group bg-[#141414] rounded-lg overflow-hidden transition-all hover:ring-2 hover:ring-[#00FFFF] cursor-default flex flex-col opacity-0 translate-y-4 delay-250 parallax-card">
+          <a href="./producto-detalle.html" class="flex-1 flex flex-col">
+            <div class="aspect-square relative w-full overflow-hidden bg-[#1a1a1a]">
+              <img src="./public/img/reme2.png" alt="Zenith Tee - Ash" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 parallax-image" />
+              <div class="absolute top-3 right-3 z-10 h-16 w-16 rounded-full bg-black/50 p-1.5 backdrop-blur-sm" title="Producto Energizado (Enigma)">
+                <img src="./public/img/logo-enigma-blanco.png" alt="Logo Enigma Energizado" class="h-full w-full object-contain">
+              </div>
+            </div>
+            <div class="p-4 lg:p-6">
+              <h3 class="font-bold text-white mb-2 text-lg sm:text-xl lg:text-xl font-[Poppins,sans-serif]">Zenith Tee - Ash</h3>
+              <p class="text-gray-400 text-base sm:text-lg lg:text-base font-[Inter,sans-serif]">$80</p>
+            </div>
+          </a>
+          <div class="px-4 pb-4 lg:px-6 lg:pb-6">
+            <button type="button"
+              class="buy-btn w-full rounded-full bg-[#00FFFF] px-6 py-3 text-[#101010] font-[Inter,sans-serif] font-semibold uppercase tracking-wide transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[#00FFFF]"
+              data-product-id="zenith-tee-ash"
+              data-product-name="Zenith Tee - Ash"
+              data-product-price="80"
+              data-product-image="./public/img/reme2.png">
+              COMPRAR
+            </button>
           </div>
-          <div class="p-4 lg:p-6">
-            <h3 class="font-bold text-white mb-2 text-lg sm:text-xl lg:text-xl" style="font-family: Poppins, sans-serif;">Zenith Tee - Ash</h3>
-            <p class="text-gray-400 text-base sm:text-lg lg:text-base" style="font-family: Inter, sans-serif;">$80</p>
-          </div>
-        </a>
+        </article>
 
-        <a href="./producto-detalle.html" class="anim-child group bg-[#141414] rounded-lg overflow-hidden transition-all hover:ring-2 hover:ring-[#00FFFF] cursor-pointer flex flex-col opacity-0 translate-y-4 delay-300">
-          <div class="aspect-square relative w-full overflow-hidden bg-[#1a1a1a]">
-            <img src="./public/img/reme-tatei.jpg" alt="Momentum Trousers - Navy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+        <article class="anim-child group bg-[#141414] rounded-lg overflow-hidden transition-all hover:ring-2 hover:ring-[#00FFFF] cursor-default flex flex-col opacity-0 translate-y-4 delay-300 parallax-card">
+          <a href="./producto-detalle.html" class="flex-1 flex flex-col">
+            <div class="aspect-square relative w-full overflow-hidden bg-[#1a1a1a]">
+              <img src="./public/img/reme-tatei.jpg" alt="Momentum Trousers - Navy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 parallax-image" />
+              <div class="absolute top-3 right-3 z-10 h-16 w-16 rounded-full bg-black/50 p-1.5 backdrop-blur-sm" title="Producto Energizado (Enigma)">
+                <img src="./public/img/logo-enigma-blanco.png" alt="Logo Enigma Energizado" class="h-full w-full object-contain">
+              </div>
+            </div>
+            <div class="p-4 lg:p-6">
+              <h3 class="font-bold text-white mb-2 text-lg sm:text-xl lg:text-xl font-[Poppins,sans-serif]">Momentum Trousers - Navy</h3>
+              <p class="text-gray-400 text-base sm:text-lg lg:text-base font-[Inter,sans-serif]">$220</p>
+            </div>
+          </a>
+          <div class="px-4 pb-4 lg:px-6 lg:pb-6">
+            <button type="button"
+              class="buy-btn w-full rounded-full bg-[#00FFFF] px-6 py-3 text-[#101010] font-[Inter,sans-serif] font-semibold uppercase tracking-wide transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[#00FFFF]"
+              data-product-id="momentum-trousers-navy"
+              data-product-name="Momentum Trousers - Navy"
+              data-product-price="220"
+              data-product-image="./public/img/reme-tatei.jpg">
+              COMPRAR
+            </button>
           </div>
-          <div class="p-4 lg:p-6">
-            <h3 class="font-bold text-white mb-2 text-lg sm:text-xl lg:text-xl" style="font-family: Poppins, sans-serif;">Momentum Trousers - Navy</h3>
-            <p class="text-gray-400 text-base sm:text-lg lg:text-base" style="font-family: Inter, sans-serif;">$220</p>
-          </div>
-        </a>
+        </article>
       </div>
     </section>
 
     <section class="bg-[#101010] text-white">
       <div class="px-6 py-16 md:py-20">
         <div class="mx-auto max-w-2xl text-center">
-          <h2 class="mb-4 font-[family-name:var(--font-poppins)] text-4xl font-bold leading-tight md:text-5xl">
+          <h2 class="mb-4 font-[Poppins,sans-serif] text-4xl font-bold leading-tight md:text-5xl">
             Mantenete en Frecuencia
           </h2>
-          <p class="mb-8 font-[family-name:var(--font-inter)] text-base leading-relaxed text-gray-300 md:text-lg">
+          <p class="mb-8 font-[Inter,sans-serif] text-base leading-relaxed text-gray-300 md:text-lg">
             Suscribite a nuestro newsletter y recibí contenido exclusivo, lanzamientos y novedades.
           </p>
           <form class="mx-auto flex max-w-md flex-col gap-3 sm:flex-row">
             <input type="email" placeholder="Your Email"
-              class="flex-1 rounded-lg border border-gray-700 bg-[#1a1a1a] px-4 py-3 font-[family-name:var(--font-inter)] text-white placeholder:text-gray-500 focus:outline-none focus:border-[#00FFFF]" />
+              class="flex-1 rounded-lg border border-gray-700 bg-[#1a1a1a] px-4 py-3 font-[Inter,sans-serif] text-white placeholder:text-gray-500 focus:outline-none focus:border-[#00FFFF]" />
             <button type="submit"
-              class="rounded-lg bg-[#00FFFF] px-8 py-3 font-[family-name:var(--font-inter)] font-medium text-[#101010] hover:bg-[#00FFFF]/90">
+              class="rounded-lg bg-[#00FFFF] px-8 py-3 font-[Inter,sans-serif] font-medium text-[#101010] hover:bg-[#00FFFF]/90">
               Subscribe
             </button>
           </form>
@@ -198,30 +290,30 @@
       <div class="px-4 md:px-6 py-8 md:py-12">
         <div class="mx-auto grid max-w-6xl gap-8 grid-cols-2 md:grid-cols-4">
           <div class="col-span-2 md:col-span-1 text-center md:text-left">
-            <h3 class="mb-4 font-[family-name:var(--font-poppins)] text-2xl font-bold">BUDHA.Om</h3>
-            <p class="font-[family-name:var(--font-inter)] text-sm leading-relaxed text-gray-400">
+            <h3 class="mb-4 font-[Poppins,sans-serif] text-2xl font-bold">BUDHA.Om</h3>
+            <p class="font-[Inter,sans-serif] text-sm leading-relaxed text-gray-400">
               © 2025 BUDHA.Om. Todos los derechos reservados.
             </p>
           </div>
 
           <div class="text-center md:text-left">
-            <h4 class="mb-4 font-[family-name:var(--font-inter)] text-base font-semibold">Navegación</h4>
+            <h4 class="mb-4 font-[Inter,sans-serif] text-base font-semibold">Navegación</h4>
             <ul class="space-y-3">
               <li>
                 <a href="#"
-                  class="font-[family-name:var(--font-inter)] text-sm text-gray-300 transition-colors hover:text-white">
+                  class="font-[Inter,sans-serif] text-sm text-gray-300 transition-colors hover:text-white">
                   Tienda
                 </a>
               </li>
               <li>
                 <a href="#"
-                  class="font-[family-name:var(--font-inter)] text-sm text-gray-300 transition-colors hover:text-white">
+                  class="font-[Inter,sans-serif] text-sm text-gray-300 transition-colors hover:text-white">
                   Tecnología Cuántica
                 </a>
               </li>
               <li>
                 <a href="#"
-                  class="font-[family-name:var(--font-inter)] text-sm text-gray-300 transition-colors hover:text-white">
+                  class="font-[Inter,sans-serif] text-sm text-gray-300 transition-colors hover:text-white">
                   Nuestra Filosofía
                 </a>
               </li>
@@ -229,23 +321,23 @@
           </div>
 
           <div class="text-center md:text-left">
-            <h4 class="mb-4 font-[family-name:var(--font-inter)] text-base font-semibold">Ayuda</h4>
+            <h4 class="mb-4 font-[Inter,sans-serif] text-base font-semibold">Ayuda</h4>
             <ul class="space-y-3">
               <li>
                 <a href="#"
-                  class="font-[family-name:var(--font-inter)] text-sm text-gray-300 transition-colors hover:text-white">
+                  class="font-[Inter,sans-serif] text-sm text-gray-300 transition-colors hover:text-white">
                   Preguntas Frecuentes
                 </a>
               </li>
               <li>
                 <a href="#"
-                  class="font-[family-name:var(--font-inter)] text-sm text-gray-300 transition-colors hover:text-white">
+                  class="font-[Inter,sans-serif] text-sm text-gray-300 transition-colors hover:text-white">
                   Contacto
                 </a>
               </li>
               <li>
                 <a href="#"
-                  class="font-[family-name:var(--font-inter)] text-sm text-gray-300 transition-colors hover:text-white">
+                  class="font-[Inter,sans-serif] text-sm text-gray-300 transition-colors hover:text-white">
                   Términos y Condiciones
                 </a>
               </li>
@@ -253,7 +345,7 @@
           </div>
 
           <div class="col-span-2 md:col-span-1 text-center md:text-left">
-            <h4 class="mb-4 font-[family-name:var(--font-inter)] text-base font-semibold">Seguinos</h4>
+            <h4 class="mb-4 font-[Inter,sans-serif] text-base font-semibold">Seguinos</h4>
             <div class="flex gap-4 justify-center md:justify-start">
               <a href="#" class="text-gray-300 transition-colors hover:text-white" aria-label="Instagram">
                 <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
@@ -283,111 +375,47 @@
     </section>
   </main>
 
-  <script>
-    function initSimpleMobileMenu() {
-      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-      const closeMobileMenuBtn = document.getElementById('close-mobile-menu');
-      const mobileMenu = document.getElementById('mobile-menu');
-      if (!mobileMenuBtn || !mobileMenu || !closeMobileMenuBtn) {
-        console.warn('Elementos del menú móvil no encontrados');
-        return;
-      }
-      function toggleMenu(e) {
-        if (e) { e.stopPropagation(); }
-        mobileMenu.classList.toggle('hidden');
-      }
-      function closeMenu(e) {
-        if (e) { e.stopPropagation(); }
-        mobileMenu.classList.add('hidden');
-      }
-      mobileMenuBtn.addEventListener('click', toggleMenu);
-      closeMobileMenuBtn.addEventListener('click', closeMenu);
-      const mobileMenuLinks = mobileMenu.querySelectorAll('a');
-      mobileMenuLinks.forEach(link => {
-        link.addEventListener('click', () => {
-          mobileMenu.classList.add('hidden');
-        });
-      });
-    }
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initSimpleMobileMenu);
-    } else {
-      initSimpleMobileMenu();
-    }
-  </script>
+  <!-- Carrito lateral -->
+  <div id="cart-overlay" class="fixed inset-0 bg-black/70 backdrop-blur-sm opacity-0 pointer-events-none hidden transition-opacity duration-300 z-[55]" aria-hidden="true"></div>
+  <aside id="cart-panel" class="hidden fixed top-0 right-0 h-full w-full max-w-md bg-[#111111] text-white transform translate-x-full transition-transform duration-300 z-[60] flex flex-col shadow-[-12px_0_40px_rgba(0,0,0,0.45)] pt-24" aria-hidden="true">
+    <div class="flex items-center justify-between px-6 py-5 border-b border-white/10">
+      <h2 class="text-xl font-semibold font-[Inter,sans-serif]">Carrito de compras</h2>
+      <button id="cart-close-btn" type="button" class="text-gray-300 hover:text-white transition-colors focus:outline-none" aria-label="Cerrar carrito">
+        <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+    <div id="cart-items-wrapper" class="flex-1 overflow-y-auto px-6 py-4">
+      <div id="cart-empty-state" class="flex h-full flex-col items-center justify-center text-center gap-3 text-gray-400">
+        <svg class="h-12 w-12 text-gray-500" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24">
+          <path d="M3 3h2l.4 2M7 13h10l1.5-6H5.4" stroke-linecap="round" stroke-linejoin="round"></path>
+          <circle cx="9" cy="19" r="1.5"></circle>
+          <circle cx="17" cy="19" r="1.5"></circle>
+        </svg>
+        <p class="font-[Inter,sans-serif] text-sm">Tu carrito está vacío. Empezá a sumar energía.</p>
+      </div>
+      <ul id="cart-items-list" class="space-y-4 hidden"></ul>
+    </div>
+    <div class="border-t border-white/10 px-6 py-5 space-y-4">
+      <div class="flex items-center justify-between text-sm font-[Inter,sans-serif] text-gray-300">
+        <span>Subtotal (sin envío)</span>
+        <span id="cart-subtotal" class="text-lg font-semibold text-white">$0</span>
+      </div>
+      <div class="rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-gray-300 font-[Inter,sans-serif]">
+        <p class="font-semibold text-white mb-1">Envíos & Retiro</p>
+        <p>Ingresá tu código postal durante el checkout para calcular el envío o elegí retirar sin costo.</p>
+      </div>
+      <button id="cart-checkout-btn" type="button" class="w-full rounded-full bg-[#00FFFF] py-4 text-[#101010] font-[Inter,sans-serif] font-semibold uppercase tracking-wide transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[#00FFFF]">
+        Iniciar compra
+      </button>
+      <button id="cart-continue-btn" type="button" class="w-full text-sm text-gray-400 hover:text-white transition-colors font-[Inter,sans-serif]">
+        Seguir explorando
+      </button>
+    </div>
+  </aside>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const navbar = document.getElementById('main-navbar');
-      if (navbar) {
-        const handleScroll = () => {
-          if (window.scrollY > 50) {
-            navbar.classList.remove('bg-transparent');
-            navbar.classList.add('bg-[#101010]');
-          } else {
-            navbar.classList.add('bg-transparent');
-            navbar.classList.remove('bg-[#101010]');
-          }
-        };
-        window.addEventListener('scroll', handleScroll);
-        // Ejecutar una vez al cargar por si la página carga con scroll
-        handleScroll(); 
-      }
-    });
-  </script>
-
-  <script>
-    // Sistema de animaciones suaves y minimalistas
-    document.addEventListener('DOMContentLoaded', () => {
-      function triggerAnimations(element) {
-        if (!element || element.dataset.animated === 'true') return;
-        
-        const animatedElements = element.querySelectorAll('.anim-child');
-        
-        animatedElements.forEach(el => {
-          if (!el.classList.contains('opacity-0')) return;
-          
-          const delayClass = Array.from(el.classList).find(c => c.startsWith('delay-'));
-          const delay = delayClass ? parseInt(delayClass.split('-')[1]) : 0;
-          
-          setTimeout(() => {
-            el.classList.add('transition-all', 'duration-700', 'ease-out');
-            el.classList.remove('opacity-0');
-            
-            if (el.classList.contains('translate-y-4')) {
-              el.classList.remove('translate-y-4');
-              el.classList.add('translate-y-0');
-            }
-            
-            el.classList.add('opacity-100');
-          }, delay);
-        });
-        
-        element.dataset.animated = 'true';
-      }
-      
-      // Animar elementos del hero inmediatamente
-      const heroSection = document.querySelector('section:first-of-type');
-      if (heroSection) {
-        setTimeout(() => triggerAnimations(heroSection), 100);
-      }
-      
-      // Animar productos cuando entran en viewport
-      const productsSection = document.querySelectorAll('section')[1];
-      if (productsSection) {
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              triggerAnimations(entry.target);
-              observer.unobserve(entry.target);
-            }
-          });
-        }, { threshold: 0.1 });
-        
-        observer.observe(productsSection);
-      }
-    });
-  </script>
+  <script src="./app.js" defer></script>
 
 </body>
 </html>

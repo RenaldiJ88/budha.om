@@ -55,8 +55,9 @@
             <path d="M3 12h18M3 6h18M3 18h18" />
           </svg>
         </button>
-        <button class="text-white transition-colors hover:opacity-80 drop-shadow-[0_0_4px_rgba(0,0,0,0.35)]"
-          style="cursor: pointer;">
+        <button id="cart-toggle-btn" type="button"
+          class="text-white transition-colors hover:opacity-80 drop-shadow-[0_0_4px_rgba(0,0,0,0.35)]"
+          style="cursor: pointer;" aria-label="Abrir carrito">
           <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
             aria-hidden="true">
             <circle cx="9" cy="21" r="1" />
@@ -89,12 +90,12 @@
   </div>
 
   <!-- Sección Principal del Producto -->
-  <main class="pt-20 pb-16 md:pt-24 md:pb-24">
-    <div class="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl">
+  <main data-barba="container" data-barba-namespace="producto" class="relative z-10 pt-20 pb-16 md:pt-24 md:pb-24">
+    <section class="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16">
         
         <!-- Sección de Imágenes (Izquierda) -->
-        <div class="flex flex-col gap-4">
+        <div class="anim-child flex flex-col gap-4 opacity-0 translate-y-4 delay-50">
           <!-- Imagen Principal -->
           <div class="w-full aspect-square bg-gray-700 rounded-lg flex items-center justify-center overflow-hidden">
             <img id="main-product-image" src="./public/img/reme-tatei.jpg" alt="Remera Wairua 432" 
@@ -119,11 +120,16 @@
         </div>
 
         <!-- Sección de Detalles del Producto (Derecha) -->
-        <div class="flex flex-col justify-center">
+        <div class="anim-child flex flex-col justify-center opacity-0 translate-y-4 delay-100">
           <!-- Título -->
-          <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 font-poppins">
-            Remera Wairua 432
-          </h1>
+          <div class="flex items-center justify-between mb-4">
+            <h1 id="product-name" class="text-3xl md:text-4xl lg:text-5xl font-bold text-white font-poppins">
+              Remera Wairua 432
+            </h1>
+            <div class="flex-shrink-0 ml-16" title="Producto Energizado (Enigma)">
+              <img src="./public/img/logo-enigma-blanco.png" alt="Logo Enigma" class="h-16 w-16">
+            </div>
+          </div>
 
           <!-- Tag de Tecnología -->
           <div class="inline-block bg-[#00FFFF] text-[#101010] px-4 py-1.5 rounded mb-6">
@@ -146,23 +152,43 @@
           <div class="mb-8">
             <label class="block text-white mb-3 text-sm font-semibold font-inter">TALLE</label>
             <div class="flex gap-3">
-              <button type="button" class="size-btn w-12 h-12 rounded border border-gray-600 bg-[#1a1a1a] text-white font-semibold hover:border-gray-500 transition-colors focus:outline-none focus:ring-2 focus:ring-[#00FFFF]" data-size="S">
+              <button type="button" class="size-btn w-12 h-12 rounded border border-gray-600 bg-[#1a1a1a] text-white font-semibold hover:border-gray-500 transition-colors focus:outline-none focus:ring-2 focus:ring-[#00FFFF]" data-size="S" aria-pressed="false">
                 S
               </button>
-              <button type="button" class="size-btn w-12 h-12 rounded border border-gray-600 bg-[#00FFFF] text-[#101010] font-semibold hover:bg-[#00FFFF]/90 transition-colors focus:outline-none focus:ring-2 focus:ring-[#00FFFF]" data-size="M">
+              <button type="button" class="size-btn w-12 h-12 rounded border border-gray-600 bg-[#00FFFF] text-[#101010] font-semibold hover:bg-[#00FFFF]/90 transition-colors focus:outline-none focus:ring-2 focus:ring-[#00FFFF]" data-size="M" aria-pressed="true">
                 M
               </button>
-              <button type="button" class="size-btn w-12 h-12 rounded border border-gray-600 bg-[#1a1a1a] text-white font-semibold hover:border-gray-500 transition-colors focus:outline-none focus:ring-2 focus:ring-[#00FFFF]" data-size="L">
+              <button type="button" class="size-btn w-12 h-12 rounded border border-gray-600 bg-[#1a1a1a] text-white font-semibold hover:border-gray-500 transition-colors focus:outline-none focus:ring-2 focus:ring-[#00FFFF]" data-size="L" aria-pressed="false">
                 L
               </button>
-              <button type="button" class="size-btn w-12 h-12 rounded border border-gray-600 bg-[#1a1a1a] text-white font-semibold hover:border-gray-500 transition-colors focus:outline-none focus:ring-2 focus:ring-[#00FFFF]" data-size="XL">
+              <button type="button" class="size-btn w-12 h-12 rounded border border-gray-600 bg-[#1a1a1a] text-white font-semibold hover:border-gray-500 transition-colors focus:outline-none focus:ring-2 focus:ring-[#00FFFF]" data-size="XL" aria-pressed="false">
                 XL
               </button>
             </div>
           </div>
 
+          <!-- Selector de Cantidad -->
+          <div class="mb-8">
+            <label class="block text-white mb-3 text-sm font-semibold font-inter" for="quantity-input">CANTIDAD</label>
+            <div class="flex items-center gap-3">
+              <button type="button" id="quantity-decrease" class="w-12 h-12 flex items-center justify-center rounded border border-gray-600 bg-[#1a1a1a] text-white text-xl font-semibold hover:border-gray-500 transition-colors focus:outline-none focus:ring-2 focus:ring-[#00FFFF]" aria-label="Disminuir cantidad">
+                &minus;
+              </button>
+              <input id="quantity-input" type="number" min="1" value="1" class="w-16 md:w-20 h-12 text-center rounded border border-gray-600 bg-[#1a1a1a] text-white font-semibold focus:outline-none focus:ring-2 focus:ring-[#00FFFF]" aria-live="polite" />
+              <button type="button" id="quantity-increase" class="w-12 h-12 flex items-center justify-center rounded border border-gray-600 bg-[#1a1a1a] text-white text-xl font-semibold hover:border-gray-500 transition-colors focus:outline-none focus:ring-2 focus:ring-[#00FFFF]" aria-label="Aumentar cantidad">
+                +
+              </button>
+            </div>
+          </div>
+
           <!-- Botón Añadir al Carrito -->
-          <button type="button" class="w-full md:w-auto bg-[#00FFFF] text-[#101010] font-semibold uppercase px-8 py-4 rounded mb-6 hover:bg-[#00FFFF]/90 transition-colors focus:outline-none focus:ring-2 focus:ring-[#00FFFF] font-inter">
+          <button type="button"
+            id="add-to-cart-btn"
+            data-product-id="remera-wairua-432"
+            data-product-name="Remera Wairua 432"
+            data-product-price="18500"
+            data-product-image="./public/img/reme-tatei.jpg"
+            class="w-full md:w-auto bg-[#00FFFF] text-[#101010] font-semibold uppercase px-8 py-4 rounded mb-6 hover:bg-[#00FFFF]/90 transition-colors focus:outline-none focus:ring-2 focus:ring-[#00FFFF] font-inter">
             AÑADIR AL CARRITO
           </button>
 
@@ -175,7 +201,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </section>
   </main>
 
   <!-- Footer -->
@@ -289,108 +315,45 @@
     </section>
   </main>
 
-  <script>
-    function initSimpleMobileMenu() {
-      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-      const closeMobileMenuBtn = document.getElementById('close-mobile-menu');
-      const mobileMenu = document.getElementById('mobile-menu');
-      if (!mobileMenuBtn || !mobileMenu || !closeMobileMenuBtn) {
-        console.warn('Elementos del menú móvil no encontrados');
-        return;
-      }
-      function toggleMenu(e) {
-        if (e) { e.stopPropagation(); }
-        mobileMenu.classList.toggle('hidden');
-      }
-      function closeMenu(e) {
-        if (e) { e.stopPropagation(); }
-        mobileMenu.classList.add('hidden');
-      }
-      mobileMenuBtn.addEventListener('click', toggleMenu);
-      closeMobileMenuBtn.addEventListener('click', closeMenu);
-      const mobileMenuLinks = mobileMenu.querySelectorAll('a');
-      mobileMenuLinks.forEach(link => {
-        link.addEventListener('click', () => {
-          mobileMenu.classList.add('hidden');
-        });
-      });
-    }
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initSimpleMobileMenu);
-    } else {
-      initSimpleMobileMenu();
-    }
-  </script>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const navbar = document.getElementById('main-navbar');
-      if (navbar) {
-        const handleScroll = () => {
-          if (window.scrollY > 50) {
-            navbar.classList.remove('bg-transparent');
-            navbar.classList.add('bg-[#101010]');
-          } else {
-            navbar.classList.add('bg-transparent');
-            navbar.classList.remove('bg-[#101010]');
-          }
-        };
-        window.addEventListener('scroll', handleScroll);
-        // Ejecutar una vez al cargar por si la página carga con scroll
-        handleScroll(); 
-      }
-    });
-  </script>
-
-  <script>
-    // Funcionalidad de thumbnails de imágenes
-    document.addEventListener('DOMContentLoaded', () => {
-      const mainImage = document.getElementById('main-product-image');
-      const thumbnailBtns = document.querySelectorAll('.thumbnail-btn');
-      
-      thumbnailBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          const img = btn.querySelector('img');
-          if (img && mainImage) {
-            // Cambiar la imagen principal
-            mainImage.src = img.src;
-            mainImage.alt = img.alt;
-            
-            // Actualizar bordes de las thumbnails
-            thumbnailBtns.forEach(b => {
-              b.classList.remove('border-[#00FFFF]');
-              b.classList.add('border-transparent');
-            });
-            btn.classList.remove('border-transparent');
-            btn.classList.add('border-[#00FFFF]');
-          }
-        });
-      });
-    });
-
-    // Funcionalidad del selector de talles
-    document.addEventListener('DOMContentLoaded', () => {
-      const sizeBtns = document.querySelectorAll('.size-btn');
-      
-      sizeBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          const selectedSize = btn.getAttribute('data-size');
-          
-          // Actualizar estilos de los botones
-          sizeBtns.forEach(b => {
-            b.classList.remove('bg-[#00FFFF]', 'text-[#101010]');
-            b.classList.add('bg-[#1a1a1a]', 'text-white');
-          });
-          
-          btn.classList.remove('bg-[#1a1a1a]', 'text-white');
-          btn.classList.add('bg-[#00FFFF]', 'text-[#101010]');
-          
-          // Aquí puedes agregar lógica adicional, como guardar el talle seleccionado
-          console.log('Talle seleccionado:', selectedSize);
-        });
-      });
-    });
-  </script>
+  <!-- Carrito lateral -->
+  <div id="cart-overlay" class="fixed inset-0 bg-black/70 backdrop-blur-sm opacity-0 pointer-events-none hidden transition-opacity duration-300 z-[55]" aria-hidden="true"></div>
+  <aside id="cart-panel" class="hidden fixed top-0 right-0 h-full w-full max-w-md bg-[#111111] text-white transform translate-x-full transition-transform duration-300 z-[60] flex flex-col shadow-[-12px_0_40px_rgba(0,0,0,0.45)] pt-24" aria-hidden="true">
+    <div class="flex items-center justify-between px-6 py-5 border-b border-white/10">
+      <h2 class="text-xl font-semibold font-inter">Carrito de compras</h2>
+      <button id="cart-close-btn" type="button" class="text-gray-300 hover:text-white transition-colors focus:outline-none" aria-label="Cerrar carrito">
+        <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+    <div id="cart-items-wrapper" class="flex-1 overflow-y-auto px-6 py-4">
+      <div id="cart-empty-state" class="flex h-full flex-col items-center justify-center text-center gap-3 text-gray-400">
+        <svg class="h-12 w-12 text-gray-500" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24">
+          <path d="M3 3h2l.4 2M7 13h10l1.5-6H5.4" stroke-linecap="round" stroke-linejoin="round"></path>
+          <circle cx="9" cy="19" r="1.5"></circle>
+          <circle cx="17" cy="19" r="1.5"></circle>
+        </svg>
+        <p class="font-inter text-sm">Tu carrito está vacío. Empezá a sumar energía.</p>
+      </div>
+      <ul id="cart-items-list" class="space-y-4 hidden"></ul>
+    </div>
+    <div class="border-t border-white/10 px-6 py-5 space-y-4">
+      <div class="flex items-center justify-between text-sm font-inter text-gray-300">
+        <span>Subtotal (sin envío)</span>
+        <span id="cart-subtotal" class="text-lg font-semibold text-white">$0</span>
+      </div>
+      <div class="rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-gray-300 font-inter">
+        <p class="font-semibold text-white mb-1">Envíos & Retiro</p>
+        <p>Ingresá tu código postal durante el checkout para calcular el envío o elegí retirar sin costo.</p>
+      </div>
+      <button id="cart-checkout-btn" type="button" class="w-full rounded-full bg-[#00FFFF] py-4 text-[#101010] font-inter font-semibold uppercase tracking-wide transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[#00FFFF]">
+        Iniciar compra
+      </button>
+      <button id="cart-continue-btn" type="button" class="w-full text-sm text-gray-400 hover:text-white transition-colors font-inter">
+        Seguir explorando
+      </button>
+    </div>
+  </aside>
 
 </body>
 </html>
