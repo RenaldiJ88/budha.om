@@ -515,6 +515,34 @@ function initSimpleMobileMenu() {
   });
 }
 
+// --- Scripts Específicos (Home: Parallax) ---
+
+function initParallaxCards() {
+  const parallaxCards = document.querySelectorAll('.parallax-card');
+  if (parallaxCards.length === 0) return;
+
+  parallaxCards.forEach(card => {
+    const image = card.querySelector('.parallax-image');
+    if (!image) return;
+
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      
+      const { width, height } = rect;
+      const rotateX = (y / height - 0.5) * -16; // Invertido para que sea más natural
+      const rotateY = (x / width - 0.5) * 16;
+      
+      image.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      image.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+    });
+  });
+}
+
 // --- Scripts del HOME (Index) ---
 function initCarousel() {
   const carouselContainer = document.getElementById('carousel-slides');

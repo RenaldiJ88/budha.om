@@ -13,12 +13,11 @@
     }
     main {
       position: relative;
-      height: 100vh; 
     }
     main > section {
       position: relative;
       width: 100%;
-      min-height: 100vh;
+      height: 100vh;
     }
     html { scrollbar-width: none; }
     body { -ms-overflow-style: none; }
@@ -123,7 +122,7 @@
 
   <main class="h-screen" data-barba="container" data-barba-namespace="home">
     
-    <section class="relative h-screen w-full overflow-hidden bg-[#101010] flex flex-col">
+    <section data-index="0" class="relative h-screen w-full overflow-hidden bg-[#101010] flex flex-col">
       <div class="absolute inset-0 z-0 w-full h-full overflow-hidden">
         <video class="object-cover w-full h-full" autoplay loop muted playsinline>
           <source src="./public/video/video-home-f2.mp4" type="video/mp4" />
@@ -145,13 +144,13 @@
       </div>
     </section>
     
-    <section id="colecciones" class="w-full h-screen px-4 md:px-6 flex items-center " >
-      <div class="mx-auto grid max-w-6xl grid-cols-1 gap-6 md:gap-10 md:grid-cols-2">
+    <section data-index="1" id="colecciones" class="w-full h-screen px-4 md:px-6 flex items-center " >
+      <div class="mx-auto grid max-w-6xl grid-cols-1 gap-6 md:gap-24 md:grid-cols-2">
         <a href="./coleccion-energizada.html"
-          class="parallax-card anim-child group rounded-3xl bg-[#141414] p-4 md:p-6 shadow-[0_10px_40px_rgba(0,0,0,0.25)] transition-all duration-500 hover:translate-y-[-4px] hover:shadow-[0_15px_50px_rgba(0,0,0,0.4)] opacity-0 -translate-x-8">
+          class="parallax-card anim-child group rounded-3xl bg-[#141414] p-4 md:p-6 shadow-[0_10px_40px_rgba(0,0,0,0.25)] hover:shadow-[0_15px_50px_rgba(0,0,0,0.4)] opacity-0 -translate-x-8 transition-shadow hover:shadow-2xl hover:shadow-cyan-500/20">
           <div class="overflow-hidden rounded-2xl">
             <img src="./public/img/reme2.png" alt="Colección Energizada" width="780" height="520"
-              class="parallax-image h-72 w-full object-cover sm:h-80 md:h-96 transition-transform duration-700 group-hover:scale-105" />
+              class="parallax-image h-72 w-full object-cover sm:h-80 md:h-96 group-hover:scale-105" />
           </div>
           <div class="pt-8">
             <h2 class="mb-4 font-poppins text-3xl font-extrabold text-white md:text-4xl">Colección Energizada</h2>
@@ -162,10 +161,10 @@
           </div>
         </a>
         <a href="./coleccion-esencia.html"
-          class="parallax-card anim-child group rounded-3xl bg-[#141414] p-4 md:p-6 shadow-[0_10px_40px_rgba(0,0,0,0.25)] transition-all duration-500 hover:translate-y-[-4px] hover:shadow-[0_15px_50px_rgba(0,0,0,0.4)] opacity-0 translate-x-8 delay-75">
+          class="parallax-card anim-child group rounded-3xl bg-[#141414] p-4 md:p-6 shadow-[0_10px_40px_rgba(0,0,0,0.25)] hover:shadow-[0_15px_50px_rgba(0,0,0,0.4)] opacity-0 translate-x-8 transition-shadow hover:shadow-2xl hover:shadow-cyan-500/20">
           <div class="overflow-hidden rounded-2xl">
             <img src="./public/img/reme-tatei.jpg" alt="Colección Esencia" width="780" height="520"
-              class="parallax-image h-72 w-full object-cover sm:h-80 md:h-96 transition-transform duration-700 group-hover:scale-105" />
+              class="parallax-image h-72 w-full object-cover sm:h-80 md:h-96  group-hover:scale-105" />
           </div>
           <div class="pt-8">
             <h2 class="mb-4 font-poppins text-3xl font-extrabold text-white md:text-4xl">Colección Esencia</h2>
@@ -177,7 +176,7 @@
       </div>
     </section>
     
-    <section class="h-screen flex items-center justify-center px-4 md:px-8 lg:px-16 bg-[#101010]" >
+    <section data-index="2" class="h-screen flex items-center justify-center px-4 md:px-8 lg:px-16 bg-[#101010]" >
       <div class="max-w-7xl w-full grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
         <div class="space-y-6 text-center lg:text-left">
           <h1
@@ -213,60 +212,43 @@
       </div>
     </section>
     
-    <section class="h-screen flex items-center justify-center px-6 bg-[#101010]" >
-       <div class="w-full max-w-5xl mx-auto flex flex-col items-center">
-        <div class="anim-child w-full flex items-center justify-center opacity-0 translate-y-4">
-          <img src="./public/img/ben1.png" alt="Beneficio 1"
-            class="max-h-[55vh] w-auto object-contain mix-blend-screen" />
-        </div>
-        <h3
-          class="anim-child mt-8 text-center font-poppins text-white text-3xl md:text-5xl font-extrabold opacity-0 translate-y-4 delay-50">
-          Beneficio 1: Equilibrio
-          Inmediato</h3>
-        <p class="anim-child mt-4 max-w-3xl text-center font-inter text-zinc-300 text-lg opacity-0 translate-y-4 delay-75">
-          Siente un aumento inmediato en tu
-          estabilidad física y fuerza, mejorando tu conexión con el suelo.</p>
+    <section data-index="3" class="relative h-screen w-full overflow-hidden">
+      <div class="container mx-auto h-full flex flex-col items-center justify-center px-6 text-center">
+        <img src="./public/img/ben1.png" alt="Icono Equilibrio" class="max-h-[55vh] w-auto mb-6 anim-child opacity-0 translate-y-4">
+        <h3 class="font-poppins text-4xl lg:text-5xl font-bold text-white mb-4 anim-child opacity-0 translate-y-4">
+          Equilibrio Inmediato
+        </h3>
+        <p class="font-inter text-lg lg:text-xl text-gray-300 max-w-lg anim-child opacity-0 translate-y-4">
+          Siente un aumento inmediato en tu estabilidad física y fuerza, mejorando tu conexión con el suelo.
+        </p>
       </div>
     </section>
     
-    <section class="h-screen bg-[#101010] flex items-center">
-      <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-8 px-6 md:px-12">
-        <div
-          class="anim-child flex items-center justify-center order-2 md:order-1 opacity-0 -translate-x-8 delay-50">
-          <img src="./public/img/ben2.png" alt="Abstract glowing cyan infinity symbol representing rest cycles"
-            class="w-full max-w-lg h-auto" />
-        </div>
-        <div class="flex flex-col justify-center gap-6 order-1 md:order-2 text-center md:text-left">
-          <h2
-            class="anim-child font-poppins text-4xl md:text-6xl font-bold text-white leading-tight opacity-0 translate-y-4">
-            Beneficio 2: Optimiza tu Descanso
-          </h2>
-          <p
-            class="anim-child font-inter text-base md:text-xl text-gray-400 leading-relaxed opacity-0 translate-y-4 delay-50">
-            Ayuda a regular los ciclos de sueño para un descanso más profundo y reparador.
-          </p>
-        </div>
+    <section data-index="4" class="relative h-screen w-full overflow-hidden">
+      <div class="container mx-auto h-full flex flex-col items-center justify-center px-6 text-center">
+        <img src="./public/img/ben2.png" alt="Icono Descanso" class="max-h-[55vh] w-auto mb-6 anim-child opacity-0 translate-y-4">
+        <h3 class="font-poppins text-4xl lg:text-5xl font-bold text-white mb-4 anim-child opacity-0 translate-y-4">
+          Optimiza tu Descanso
+        </h3>
+        <p class="font-inter text-lg lg:text-xl text-gray-300 max-w-lg anim-child opacity-0 translate-y-4">
+          Ayuda a regular los ciclos de sueño para un descanso más profundo y reparador.
+        </p>
       </div>
     </section>
     
-    <section class="flex items-center justify-center h-screen bg-[#101010] px-6">
-      <div class="flex flex-col items-center justify-center gap-8 text-center">
-        <div class="relative anim-child opacity-0 translate-y-4">
-          <img src="./public/img/bene3.png" alt="Escudo Energético"
-            class="h-auto w-full max-w-[600px]" />
-        </div>
-        <h1
-          class="anim-child font-poppins text-4xl font-bold text-white md:text-5xl lg:text-6xl opacity-0 translate-y-4 delay-50">
-          Beneficio 3: Escudo Energético
-        </h1>
-        <p
-          class="anim-child font-inter max-w-2xl text-lg text-gray-400 md:text-xl opacity-0 translate-y-4 delay-75">
+    <section data-index="5" class="relative h-screen w-full overflow-hidden">
+      <div class="container mx-auto h-full flex flex-col items-center justify-center px-6 text-center">
+        <img src="./public/img/bene3.png" alt="Icono Escudo" class="max-h-[55vh] w-auto mb-6 anim-child opacity-0 translate-y-4">
+        <h3 class="font-poppins text-4xl lg:text-5xl font-bold text-white mb-4 anim-child opacity-0 translate-y-4">
+          Escudo Energético
+        </h3>
+        <p class="font-inter text-lg lg:text-xl text-gray-300 max-w-lg anim-child opacity-0 translate-y-4">
           Contribuye a mitigar el estrés electromagnético del entorno, fortaleciendo tu aura personal.
         </p>
       </div>
     </section>
 
-    <section class="flex h-screen flex-col items-center justify-center gap-8 bg-[#101010] px-4">
+    <section data-index="6" class="flex h-screen flex-col items-center justify-center gap-8 bg-[#101010] px-4">
       <h2
         class=" mt-14 anim-child font-bold text-4xl text-white md:text-5xl lg:text-6xl text-center font-[family-name:var(--font-poppins)] opacity-0 translate-y-4">
         Mirá la Transformación en Acción
@@ -288,7 +270,7 @@
       </a>
     </section>
 
-    <section class="relative flex h-screen w-full items-center justify-center overflow-hidden bg-[#101010] bg-[url('/public/img/mquc.png')] bg-center bg-cover bg-no-repeat">
+    <section data-index="7" class="relative flex h-screen w-full items-center justify-center overflow-hidden bg-[#101010] bg-[url('/public/img/mquc.png')] bg-center bg-cover bg-no-repeat">
       <div class="absolute inset-0 bg-black/20"></div>
       <div class="relative z-20 max-w-5xl px-6 text-center">
         <h1
@@ -303,7 +285,7 @@
       </div>
     </section>
     
-    <section class="flex min-h-screen flex-col items-center justify-center bg-[#101010] px-4 pt-20">
+    <section data-index="8" class="flex min-h-screen flex-col items-center justify-center bg-[#101010] px-4 pt-20">
       <h2
         class="anim-child mb-12 text-center font-poppins text-4xl font-bold text-white md:text-5xl lg:mb-16 lg:text-6xl opacity-0 translate-y-4">
         Encontrá el diseño que resuena con vos
@@ -403,7 +385,7 @@
       </a>
     </section>
 
-    <section class="relative flex h-screen flex-col justify-end bg-[#101010] text-white">
+    <section data-index="9" class="relative flex h-screen flex-col justify-end bg-[#101010] text-white">
       <div class="px-6 py-16 md:py-20">
         <div class="mx-auto max-w-2xl text-center">
           <h2
