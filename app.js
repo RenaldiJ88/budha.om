@@ -535,10 +535,25 @@ function initParallaxCards() {
       const rotateY = (x / width - 0.5) * 16;
       
       image.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
+      // --- INICIO: Bloque de Contra-Parallax para el Texto ---
+      const textBlock = card.querySelector('.parallax-image')?.parentElement?.nextElementSibling;
+      if (textBlock) {
+        const textTranslateX = rotateY * -0.15; // Invertido y más sutil
+        const textTranslateY = rotateX * -0.15; // Invertido y más sutil
+        textBlock.style.transition = 'transform 0.2s ease-out'; // Transición suave
+        textBlock.style.transform = `translateX(${textTranslateX}px) translateY(${textTranslateY}px)`;
+      }
+      // --- FIN: Bloque de Contra-Parallax ---
     });
 
     card.addEventListener('mouseleave', () => {
       image.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+      // --- INICIO: Resetear Texto en mouseleave ---
+      const textBlock = card.querySelector('.parallax-image')?.parentElement?.nextElementSibling;
+      if (textBlock) {
+        textBlock.style.transform = 'translateX(0) translateY(0)';
+      }
+      // --- FIN: Resetear Texto ---
     });
   });
 }
