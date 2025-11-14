@@ -17,7 +17,7 @@
     main > section {
       position: relative;
       width: 100%;
-      height: 100vh;
+      height: 100svh;
     }
     html { scrollbar-width: none; }
     body { -ms-overflow-style: none; }
@@ -57,7 +57,7 @@
     </div>
   </div>
   
-  <nav id="main-navbar" class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 py-6 md:px-8 lg:px-16 bg-transparent transition-colors duration-300">
+  <nav id="main-navbar" class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4  md:px-8 lg:px-16 bg-transparent transition-colors duration-300">
     <a href="./index.html">
       <img src="./public/img/budha-logo2.png" alt="Logo BUDHA.Om" class="h-16 md:h-18 w-auto drop-shadow-[0_0_8px_rgba(0,0,0,0.35)]" />
     </a>
@@ -145,7 +145,7 @@
     </section>
     
     <section data-index="1" id="colecciones" class="w-full h-screen px-4 md:px-6 flex items-center" >
-      <div class="mx-auto grid pt-24 max-w-sm md:max-w-6xl grid-cols-1 gap-4 md:gap-12 lg:gap-24 md:grid-cols-2">
+      <div class="mx-auto grid max-w-sm md:max-w-6xl grid-cols-1 gap-4 md:gap-12 lg:gap-24 md:grid-cols-2">
         <a href="./coleccion-energizada.html"
           class="parallax-card anim-child group rounded-3xl bg-[#141414] p-4 md:p-6 shadow-[0_10px_40px_rgba(0,0,0,0.25)] hover:shadow-[0_15px_50px_rgba(0,0,0,0.4)] opacity-0 -translate-x-8 transition-shadow hover:shadow-2xl hover:shadow-cyan-500/20">
           <div class="overflow-hidden rounded-2xl w-full aspect-video md:aspect-[3/2]">
@@ -155,9 +155,9 @@
                 <img src="./public/img/logo-enigma-blanco.png" alt="Logo Enigma Energizado" class="h-full w-full object-contain">
               </div>
           </div>
-          <div class="pt-4 md:pt-8">
-            <h2 class="mb-4 font-poppins text-2xl font-extrabold text-white md:text-3xl lg:text-4xl">Colección Enigma</h2>
-            <p class="font-inter pd-2 text-[15px] leading-relaxed text-zinc-400">
+          <div class="pt-3 md:pt-8">
+            <h2 class="mb-2 font-poppins text-2xl font-extrabold text-white md:text-3xl lg:text-4xl">Colección Enigma</h2>
+            <p class="font-base text-sm leading-relaxed text-zinc-400">
               La combinación de tecnología cuántica y diseño minimalista para un estilo único y moderno.
               Para elevar tu estilo y potenciar tu energía.
             </p>
@@ -169,9 +169,9 @@
             <img src="./public/img/reme-tatei.jpg" alt="Colección Esencia" width="780" height="520"
               class="parallax-image h-full w-full object-cover group-hover:scale-105" />
           </div>
-          <div class="pt-4 md:pt-8">
-            <h2 class="mb-4 font-poppins text-2xl font-extrabold text-white md:text-3xl lg:text-4xl">Colección Nature & Spirit</h2>
-            <p class="font-inter text-[15px] leading-relaxed text-zinc-400">
+          <div class="pt-3 md:pt-8">
+            <h2 class="mb-2 font-poppins text-2xl font-extrabold text-white md:text-3xl lg:text-4xl">Colección Nature & Spirit</h2>
+            <p class="font-base text-sm leading-relaxed text-zinc-400">
               Nuestra coleccion en linea con la espiritualidad Universal, mas alla de religiones.
               Diseños que marcan el camino de la conciencia.
             </p>
@@ -181,7 +181,7 @@
     </section>
     
     <section data-index="2" class="h-screen flex items-center justify-center px-4 md:px-8 lg:px-16 bg-[#101010]" >
-      <div class="max-w-7xl w-full grid lg:grid-cols-2 gap-6 md:gap-12 lg:gap-16 items-center">
+      <div class="max-w-7xl w-full grid lg:grid-cols-2 gap-4 md:gap-12 lg:gap-16 items-center">
         <div class="space-y-4 md:space-y-6 text-center lg:text-left">
           <h1
             class="anim-child mt-14 lg:mt-0 text-3xl md:text-5xl lg:text-6xl font-bold text-white leading-tight opacity-0 -translate-x-8"
@@ -196,7 +196,7 @@
           </p>
           <div class="flex justify-center lg:justify-start">
             <button type="button"
-              class="anim-child text-base font-medium tracking-wide px-6 py-3 rounded 
+              class="anim-child text-base font-medium tracking-wide px-4 py-2 md:py-3 md:px-5 rounded 
                 opacity-0 -translate-x-8 delay-100
                 hover:scale-105 hover:shadow-lg"
               style="background-color: #00FFFF; color: #101010; font-family: Inter, sans-serif;">
@@ -206,7 +206,7 @@
         </div>
         <div
           class="anim-child flex items-center justify-center opacity-0 translate-x-8 delay-75">
-          <div class="relative w-full max-w-lg aspect-square">
+          <div class="relative w-full max-w-sm sm:max-w-lg aspect-square">
             <img src="./public/img/transformacion.png" alt="Quantum Energy Torus Field"
               class="w-full h-full object-cover mix-blend-screen transition-transform duration-700 ease-out group-hover:scale-105" />
           </div>

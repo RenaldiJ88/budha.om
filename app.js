@@ -880,7 +880,7 @@ function initIndexScroll() {
     el.style.right = '0';
     el.style.bottom = '0';
     el.style.width = '100%';
-    el.style.height = '100vh';
+    el.style.height = '100svh';
     el.style.zIndex = '40';
     el.style.opacity = '0.2';
     const startY = direction === 'down' ? '8%' : '-8%';
@@ -897,7 +897,7 @@ function initIndexScroll() {
       fromEl.style.right = '0';
       fromEl.style.bottom = '0';
       fromEl.style.width = '100%';
-      fromEl.style.height = '100vh';
+      fromEl.style.height = '100svh';
       fromEl.style.zIndex = '30';
       fromEl.style.transition = `transform ${dur}ms ${easing}, filter ${dur}ms ease-out, opacity ${dur}ms ease-out`;
       const exitY = direction === 'down' ? '-6%' : '6%';
