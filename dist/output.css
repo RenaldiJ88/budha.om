@@ -1194,13 +1194,6 @@
       }
     }
   }
-  .hover\:bg-teal-300 {
-    &:hover {
-      @media (hover: hover) {
-        background-color: var(--color-teal-300);
-      }
-    }
-  }
   .hover\:bg-teal-400\/10 {
     &:hover {
       @media (hover: hover) {
@@ -1388,11 +1381,6 @@
   .md\:hidden {
     @media (width >= 48rem) {
       display: none;
-    }
-  }
-  .md\:aspect-\[3\/2\] {
-    @media (width >= 48rem) {
-      aspect-ratio: 3/2;
     }
   }
   .md\:aspect-square {
