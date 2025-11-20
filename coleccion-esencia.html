@@ -14,6 +14,16 @@
     html { scrollbar-width: none; }
     body { -ms-overflow-style: none; }
     body::-webkit-scrollbar { display: none; width: 0; height: 0; }
+    /* Asegurar que main y secciones no tengan restricciones de altura excepto el hero */
+    main[data-barba-namespace="coleccion"] {
+      min-height: auto !important;
+      height: auto !important;
+    }
+    main[data-barba-namespace="coleccion"] > section:not(:first-child) {
+      min-height: auto !important;
+      height: auto !important;
+      max-height: none !important;
+    }
   </style>
   <script src="https://unpkg.com/@barba/core"></script>
 </head>
@@ -104,13 +114,13 @@
           Colección Nature & Spirit
         </h1>
         <p class="anim-child text-xl md:text-2xl text-white text-center max-w-2xl drop-shadow-[0_0_6px_rgba(0,0,0,0.7)] opacity-0 translate-y-4 delay-50 font-[Inter,sans-serif]">
-          An exploration of fundamental simplicity, fusing timeless design with quantum technology.
+          La exploracion de la conciencia y la espiritualidad.
         </p>
       </div>
     </section>
 
-    <section class="py-16 px-4 sm:px-6 lg:px-8 bg-[#101010]">
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-6 max-w-7xl mx-auto">
+    <section class="pt-16 pb-32 px-4 sm:px-6 lg:px-8 bg-[#101010]">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-6 max-w-7xl mx-auto pb-32">
 
         <article class="anim-child group bg-[#141414] rounded-lg overflow-hidden transition-all hover:ring-2 hover:ring-[#00FFFF] cursor-default flex flex-col opacity-0 translate-y-4 delay-75 parallax-card">
           <a href="./producto-detalle.html" class="flex-1 flex flex-col">

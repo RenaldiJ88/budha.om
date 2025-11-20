@@ -189,7 +189,7 @@
             Lo que llevás, te transforma.
           </h1>
           <p
-            class="anim-child text-lg lg:text-xl text-gray-300 leading-relaxed opacity-0 -translate-x-8 delay-50"
+            class="anim-child text-base sm:text-lg lg:text-xl text-gray-300 leading-relaxed opacity-0 -translate-x-8 delay-50"
             style="font-family: Inter, sans-serif;">
             Nuestras coleccion Enigma, con tecnologia cuantica que potencia y mejora tu bienestar.
             Ofreciendo mejoras y rendimientos inmediatos en tu dia a dia.
@@ -206,7 +206,7 @@
         </div>
         <div
           class="anim-child flex items-center justify-center opacity-0 translate-x-8 delay-75">
-          <div class="relative w-full max-w-sm sm:max-w-lg aspect-video md:aspect-square">
+          <div class="relative w-full max-w-sm sm:max-w-lg aspect-square">
             <img src="./public/img/transformacion.png" alt="Quantum Energy Torus Field"
               class="w-full h-full object-cover mix-blend-screen transition-transform duration-700 ease-out group-hover:scale-105" />
           </div>
@@ -272,8 +272,14 @@
       </a>
     </section>
 
-    <section data-index="7" class="relative flex h-screen w-full items-center justify-center  overflow-hidden bg-[#101010] bg-[url('/public/img/img-nature-spirit.png')] bg-center bg-cover bg-no-repeat">
-      <div class="absolute inset-0 bg-black/20"></div>
+    <section data-index="7" class="relative flex h-screen w-full items-center justify-center overflow-hidden bg-[#101010]">
+      <div class="absolute inset-0 z-0 w-full h-full overflow-hidden">
+        <video class="object-cover w-full h-full" autoplay loop muted playsinline>
+          <source src="./public/video/nys-video.mp4" type="video/mp4" />
+          Tu navegador no admite el video de fondo.
+        </video>
+      </div>
+      <div class="absolute inset-0 bg-black/20 z-10"></div>
       <div class="relative z-20 max-w-5xl px-6 text-left">
         <h1
           class="anim-child mb-6 font-poppins text-4xl text-center md:text-5xl lg:text-6xl font-bold leading-tight text-white md:text-6xl lg:text-7xl opacity-0 translate-y-4">
@@ -326,7 +332,7 @@
                     Este diseño es nuestro manifiesto: la conexión entre la tierra y el espíritu, manifestada en una
                     prenda que vibra con la frecuencia del universo.
                   </p>
-                  <div class="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
+                  <div class="flex flex-col sm:flex-row gap-4 w-full px-16 md:px-0 md:w-auto">
                       <button type="button"
                       class="buy-btn inline-flex items-center justify-center rounded-full border border-teal-400 px-6 py-3 font-inter text-base font-semibold text-white shadow-lg transition-colors hover:bg-teal-400/10 focus:outline-none focus:ring-2 focus:ring-teal-400 md:px-8 md:py-4 md:text-lg"
                       data-product-id="remera-wairua-432"

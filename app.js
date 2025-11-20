@@ -1196,6 +1196,14 @@ function initScrollAnimations() {
       section.style.removeProperty('bottom');
       section.style.removeProperty('width');
       section.style.removeProperty('height');
+      section.style.removeProperty('max-height');
+      section.style.removeProperty('min-height');
+      // Asegurar que las secciones (excepto la primera) no tengan restricciones de altura
+      if (section !== allSections[0]) {
+        section.style.height = 'auto';
+        section.style.minHeight = 'auto';
+        section.style.maxHeight = 'none';
+      }
     });
   }
   
