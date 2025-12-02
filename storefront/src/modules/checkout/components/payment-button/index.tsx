@@ -25,8 +25,20 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({
     (cart.shipping_methods?.length ?? 0) < 1
 
   const paymentSession = cart.payment_collection?.payment_sessions?.[0]
+  const providerId = paymentSession?.provider_id || ""
+
+  // Verificar si es MercadoPago
+  const isMercadoPago = providerId.includes("mercadopago") || providerId === "pp_mercadopago_mercadopago"
 
   switch (true) {
+    case isMercadoPago:
+      return (
+        <MercadoPagoPaymentButton
+          notReady={notReady}
+          cart={cart}
+          data-testid={dataTestId}
+        />
+      )
     case isStripeLike(paymentSession?.provider_id):
       return (
         <StripePaymentButton
@@ -146,6 +158,66 @@ const StripePaymentButton = ({
       <ErrorMessage
         error={errorMessage}
         data-testid="stripe-payment-error-message"
+      />
+    </>
+  )
+}
+
+const MercadoPagoPaymentButton = ({
+  cart,
+  notReady,
+  "data-testid": dataTestId,
+}: {
+  cart: HttpTypes.StoreCart
+  notReady: boolean
+  "data-testid"?: string
+}) => {
+  const [submitting, setSubmitting] = useState(false)
+  const [errorMessage, setErrorMessage] = useState<string | null>(null)
+
+  const handlePayment = () => {
+    setSubmitting(true)
+    setErrorMessage(null)
+
+    try {
+      // Obtener la sesión de pago activa
+      const session = cart.payment_collection?.payment_sessions?.find(
+        (s) => s.status === "pending"
+      )
+
+      if (!session) {
+        throw new Error("No se encontró una sesión de pago activa")
+      }
+
+      // Obtener la URL de redirección desde los datos de la sesión
+      const initPoint = session.data?.init_point as string | undefined
+
+      if (!initPoint) {
+        throw new Error("No se encontró la URL de redirección de MercadoPago. Por favor, intenta nuevamente.")
+      }
+
+      // Redirigir al usuario a la URL externa de MercadoPago
+      window.location.href = initPoint
+    } catch (err: any) {
+      setErrorMessage(err.message || "Error al procesar el pago con MercadoPago")
+      setSubmitting(false)
+    }
+  }
+
+  return (
+    <>
+      <Button
+        disabled={notReady}
+        onClick={handlePayment}
+        size="large"
+        isLoading={submitting}
+        data-testid={dataTestId}
+      >
+        Place order
+      </Button>
+      <ErrorMessage
+        error={errorMessage}
+        data-testid="mercadopago-payment-error-message"
       />
     </>
   )
