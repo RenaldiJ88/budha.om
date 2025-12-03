@@ -1,9 +1,10 @@
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
 
-import { getCategoryByHandle, listCategories } from "@lib/data/categories"
-import { listRegions } from "@lib/data/regions"
-import { StoreRegion } from "@medusajs/types"
+// He quitado 'listCategories' de aquí porque ya no lo usamos para el build
+import { getCategoryByHandle } from "@lib/data/categories"
+// He quitado 'listRegions' y 'StoreRegion' porque ya no los usamos
+
 import CategoryTemplate from "@modules/categories/templates"
 import { SortOptions } from "@modules/store/components/refinement-list/sort-products"
 
@@ -15,31 +16,12 @@ type Props = {
   }>
 }
 
+// ESTA ES LA CLAVE:
+// Al devolver un array vacío [], le decimos a Vercel:
+// "No construyas ninguna página de categoría ahora. Hazlo cuando entre un cliente real."
+// Esto evita que Railway se sature.
 export async function generateStaticParams() {
-  const product_categories = await listCategories()
-
-  if (!product_categories) {
-    return []
-  }
-
-  const countryCodes = await listRegions().then((regions: StoreRegion[]) =>
-    regions?.map((r) => r.countries?.map((c) => c.iso_2)).flat()
-  )
-
-  const categoryHandles = product_categories.map(
-    (category: any) => category.handle
-  )
-
-  const staticParams = countryCodes
-    ?.map((countryCode: string | undefined) =>
-      categoryHandles.map((handle: any) => ({
-        countryCode,
-        category: [handle],
-      }))
-    )
-    .flat()
-
-  return staticParams
+  return []
 }
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
