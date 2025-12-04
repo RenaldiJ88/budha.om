@@ -1,0 +1,15 @@
+[phases.setup]
+nixPkgs = ["nodejs"]
+
+[phases.install]
+cmds = ["npm install --legacy-peer-deps"]
+
+[phases.build]
+cmds = [
+  "npm run build",
+  "mkdir -p .medusa_persist",
+  "cp -r .medusa/* .medusa_persist/"
+]
+
+[start]
+cmd = "mkdir -p .medusa && cp -r .medusa_persist/* .medusa/ && npx medusa db:migrate && npm run start"
