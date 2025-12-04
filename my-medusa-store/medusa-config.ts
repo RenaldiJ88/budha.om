@@ -1,29 +1,14 @@
 import { loadEnv, defineConfig, ContainerRegistrationKeys } from '@medusajs/framework/utils'
-import * as fs from 'fs'
-import * as path from 'path'
 
 loadEnv(process.env.NODE_ENV || 'development', process.cwd())
 
-// Verificar si el build del admin existe
-const adminIndexPath = path.join(process.cwd(), '.medusa', 'admin', 'index.html')
-const adminBuildExists = fs.existsSync(adminIndexPath)
-
-// Deshabilitar admin si: variable está en true O si el build no existe
-const shouldDisableAdmin = 
-  process.env.DISABLE_MEDUSA_ADMIN === "true" || 
-  !adminBuildExists
-
-if (!adminBuildExists && !process.env.DISABLE_MEDUSA_ADMIN) {
-  console.warn('⚠️  Admin build not found at .medusa/admin/index.html. Admin panel will be disabled.')
-  console.warn('   To enable admin, run: npm run build')
-}
-
 module.exports = defineConfig({
   projectConfig: {
-    databaseUrl: process.env.DATABASE_URL,
-    redisUrl: process.env.REDIS_URL, // Dejalo así, en Railway funcionará
+    databaseUrl: process.env.DATABASE_URL!, // El ! fuerza a que sea string (requerido)
+    redisUrl: process.env.REDIS_URL!,
     workerMode: "shared",
     http: {
+      // Usamos el operador ! porque sabemos que en Railway SI existen.
       storeCors: process.env.STORE_CORS!,
       adminCors: process.env.ADMIN_CORS!,
       authCors: process.env.AUTH_CORS!,
@@ -31,9 +16,10 @@ module.exports = defineConfig({
       cookieSecret: process.env.COOKIE_SECRET || "supersecret",
     }
   },
-  // @ts-ignore
   admin: {
-    disable: shouldDisableAdmin,
+    // AQUÍ ESTÁ LA CLAVE: No lo deshabilites dinámicamente.
+    // Si la variable no existe, asumimos que queremos el admin (false).
+    disable: process.env.DISABLE_MEDUSA_ADMIN === "true",
   },
   modules: [
     {
@@ -44,8 +30,9 @@ module.exports = defineConfig({
             resolve: "./src/services/mercadopago-provider.ts",
             id: "mercadopago",
             options: {
-               access_token: process.env.MERCADOPAGO_ACCESS_TOKEN,
-               public_key: process.env.MERCADOPAGO_PUBLIC_KEY,
+               // TypeScript fix: Si no hay variable, usa string vacío (fallará el pago, pero no el build)
+               access_token: process.env.MERCADOPAGO_ACCESS_TOKEN ?? "", 
+               public_key: process.env.MERCADOPAGO_PUBLIC_KEY ?? "",
             },
             dependencies: [
               ContainerRegistrationKeys.LOGGER
