@@ -1,15 +1,18 @@
 [phases.setup]
-nixPkgs = ["nodejs"]
+nixPkgs = { nodejs = "20.x" }
 
 [phases.install]
-cmds = ["npm install --legacy-peer-deps"]
+cmds = ["npm ci --legacy-peer-deps"]
 
 [phases.build]
 cmds = [
   "npm run build",
-  "mkdir -p .medusa_persist",
-  "cp -r .medusa/* .medusa_persist/"
+  "ls -la .medusa || echo 'Build failed - .medusa not created'",
+  "ls -la .medusa/admin || echo 'Admin build failed'",
+  "mkdir -p /tmp/medusa-build",
+  "cp -r .medusa /tmp/medusa-build/ || (echo 'Copy failed' && exit 1)",
+  "ls -la /tmp/medusa-build/.medusa || echo 'Copy verification failed'"
 ]
 
 [start]
-cmd = "mkdir -p .medusa && cp -r .medusa_persist/* .medusa/ && npx medusa db:migrate && npm run start"
+cmd = "cp -r /tmp/medusa-build/.medusa .medusa && npm run start"
