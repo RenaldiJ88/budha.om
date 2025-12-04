@@ -6,13 +6,9 @@ cmds = ["npm ci --legacy-peer-deps"]
 
 [phases.build]
 cmds = [
-  "npm run build",
-  "ls -la .medusa || echo 'Build failed - .medusa not created'",
-  "ls -la .medusa/admin || echo 'Admin build failed'",
-  "mkdir -p /tmp/medusa-build",
-  "cp -r .medusa /tmp/medusa-build/ || (echo 'Copy failed' && exit 1)",
-  "ls -la /tmp/medusa-build/.medusa || echo 'Copy verification failed'"
+  "chmod +x scripts/railway-start.sh || true",
+  "echo 'Build phase: Script prepared for runtime'"
 ]
 
 [start]
-cmd = "cp -r /tmp/medusa-build/.medusa .medusa && npm run start"
+cmd = "./scripts/railway-start.sh"
