@@ -1,14 +1,14 @@
 [phases.setup]
-nixPkgs = { nodejs = "20.x" }
+nixPkgs = ["nodejs-20_x"]
 
 [phases.install]
-cmds = ["npm ci --legacy-peer-deps"]
+# Usamos npm install normal para asegurar dependencias
+cmds = ["npm install --legacy-peer-deps"]
 
 [phases.build]
-cmds = [
-  "chmod +x scripts/railway-start.sh || true",
-  "echo 'Build phase: Script prepared for runtime'"
-]
+# Construimos el admin aquí
+cmds = ["npm run build"]
 
 [start]
-cmd = "./scripts/railway-start.sh"
+# Arrancamos migraciones y servidor directamente
+cmd = "npx medusa db:migrate && npm run start"
