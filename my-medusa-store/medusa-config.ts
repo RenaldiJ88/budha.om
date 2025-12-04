@@ -4,18 +4,25 @@ import * as path from 'path'
 
 loadEnv(process.env.NODE_ENV || 'development', process.cwd())
 
-// Verificar si el build del admin existe
-const adminIndexPath = path.join(process.cwd(), '.medusa', 'admin', 'index.html')
-const adminBuildExists = fs.existsSync(adminIndexPath)
+// Solo deshabilitar si la variable de entorno está explícitamente definida
+// NO deshabilitar automáticamente durante el build (para permitir construcción)
+const explicitDisable = process.env.DISABLE_MEDUSA_ADMIN === "true"
 
-// Deshabilitar admin si: variable está en true O si el build no existe
-const shouldDisableAdmin = 
-  process.env.DISABLE_MEDUSA_ADMIN === "true" || 
-  !adminBuildExists
+// En runtime, verificar si el build existe para mostrar warning
+// Pero NO deshabilitar automáticamente - dejar que Medusa lo maneje
+let shouldDisableAdmin = explicitDisable
 
-if (!adminBuildExists && !process.env.DISABLE_MEDUSA_ADMIN) {
-  console.warn('⚠️  Admin build not found at .medusa/admin/index.html. Admin panel will be disabled.')
-  console.warn('   To enable admin, run: npm run build')
+// Solo verificar build en runtime (cuando se inicia el servidor)
+if (!explicitDisable && process.env.NODE_ENV !== 'development') {
+  const adminIndexPath = path.join(process.cwd(), '.medusa', 'admin', 'index.html')
+  const adminBuildExists = fs.existsSync(adminIndexPath)
+  
+  if (!adminBuildExists) {
+    console.warn('⚠️  Admin build not found at .medusa/admin/index.html.')
+    console.warn('   Server will start but admin panel may not be accessible.')
+    console.warn('   To build admin, run: npm run build')
+    // NO deshabilitamos automáticamente - dejamos que Medusa lo maneje
+  }
 }
 
 module.exports = defineConfig({
