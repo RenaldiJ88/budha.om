@@ -1,6 +1,22 @@
 import { loadEnv, defineConfig, ContainerRegistrationKeys } from '@medusajs/framework/utils'
+import * as fs from 'fs'
+import * as path from 'path'
 
 loadEnv(process.env.NODE_ENV || 'development', process.cwd())
+
+// Verificar si el build del admin existe
+const adminIndexPath = path.join(process.cwd(), '.medusa', 'admin', 'index.html')
+const adminBuildExists = fs.existsSync(adminIndexPath)
+
+// Deshabilitar admin si: variable está en true O si el build no existe
+const shouldDisableAdmin = 
+  process.env.DISABLE_MEDUSA_ADMIN === "true" || 
+  !adminBuildExists
+
+if (!adminBuildExists && !process.env.DISABLE_MEDUSA_ADMIN) {
+  console.warn('⚠️  Admin build not found at .medusa/admin/index.html. Admin panel will be disabled.')
+  console.warn('   To enable admin, run: npm run build')
+}
 
 module.exports = defineConfig({
   projectConfig: {
@@ -17,7 +33,7 @@ module.exports = defineConfig({
   },
   // @ts-ignore
   admin: {
-    disable: process.env.DISABLE_MEDUSA_ADMIN === "true",
+    disable: shouldDisableAdmin,
   },
   modules: [
     {
